@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Grupo.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">Grupo.java</span></div><h1>Grupo.java</h1><pre class="source lang-java linenums">package modelos;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author roter
+ * @version 1.0
+ */
+public class Grupo implements Serializable {
+
+    protected long id;
+    private int anno;//**Indica el año de creacion del grupo. Tiene que ser el año actual 
+    private String nombre;//Da nombre al grupo
+    private int semana;
+
+    /**
+     * Va del 1 al 52 y al pasar de año se reinicia indica la semana de creacion
+     * del grupo
+     */
+
+
+<span class="nc" id="L36">    public Grupo() {</span>
+<span class="nc" id="L37">    }</span>
+/***
+ * 
+ * @param semana
+ * @param anno
+ * @param nombre 
+ */
+<span class="nc" id="L44">    public Grupo(int semana, int anno, String nombre) {</span>
+
+<span class="nc" id="L46">        this.semana = semana;</span>
+<span class="nc" id="L47">        this.anno = anno;</span>
+<span class="nc" id="L48">        this.nombre = nombre;</span>
+<span class="nc" id="L49">    }</span>
+/***
+ * 
+ * @param g 
+ */
+<span class="nc" id="L54">    public Grupo(Grupo g) {</span>
+<span class="nc" id="L55">        this.semana = g.getSemana();</span>
+<span class="nc" id="L56">        this.anno = g.getAnno();</span>
+<span class="nc" id="L57">        this.nombre = g.getNombre();</span>
+
+<span class="nc" id="L59">    }</span>
+/***
+ * crea un objeto de tipo grupo y le pide al usuario meter los datos
+ * @return un objeto de tipo grupo
+ */
+    public static Grupo nuevogrupo() {
+<span class="nc" id="L65">        char s='a';</span>
+        Scanner in;
+        int año;
+        String nombre;
+
+        int semana;
+
+<span class="nc" id="L72">        in = new Scanner(System.in);</span>
+<span class="nc" id="L73">        Grupo g = new Grupo();</span>
+        do {
+<span class="nc" id="L75">            System.out.println(&quot;Año de creacion del grupo&quot;);</span>
+<span class="nc" id="L76">            año = in.nextInt();</span>
+<span class="nc" id="L77">            g.setAnno(año);</span>
+<span class="nc" id="L78">            System.out.println(&quot;Nombre del grupo&quot;);</span>
+<span class="nc" id="L79">            nombre=in.nextLine();</span>
+<span class="nc" id="L80">            g.setNombre(nombre);</span>
+            do {
+<span class="nc" id="L82">                System.out.println(&quot;Semana de creacion del grupo que va de 1 al 52&quot;);</span>
+<span class="nc" id="L83">                semana = in.nextInt();</span>
+
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            } while (semana &lt; 1 || semana &gt; 52);</span>
+<span class="nc" id="L86">            System.out.println(&quot;¿Los datos son correctos?&quot; + g);</span>
+
+<span class="nc" id="L88">            System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L89">            s = in.next().charAt(0);</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">        } while (s != 's' &amp;&amp; s != 'S');</span>
+
+<span class="nc" id="L92">        return g;</span>
+
+    }
+
+    public Grupo getGrupoById(long Id) {
+<span class="nc" id="L97">        Grupo g = null;</span>
+        /* for(int i=0; i&lt; Lista.size (); i++){
+     f=(Grupo) Lista[i];
+     
+        if( f.getId()== Id){
+        }
+        
+     } 
+         */
+<span class="nc" id="L106">        return g;</span>
+    }
+
+    public ArrayList&lt;Grupo&gt; getAllGrupos() {
+<span class="nc" id="L110">        ArrayList&lt;Grupo&gt; Grupos = new ArrayList();</span>
+        /*for (int i=0; i&lt; Lista.size(); i++)
+           g= Grupo Lista[i];
+        Grupos.add(f);
+       
+         */
+<span class="nc" id="L116">        return Grupos;</span>
+    }
+
+    public long getId() {
+<span class="nc" id="L120">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="nc" id="L124">        this.id = id;</span>
+<span class="nc" id="L125">    }</span>
+
+    public int getAnno() {
+<span class="nc" id="L128">        return anno;</span>
+    }
+
+    public void setAnno(int anno) {
+<span class="nc" id="L132">        this.anno = anno;</span>
+<span class="nc" id="L133">    }</span>
+
+    public String getNombre() {
+<span class="nc" id="L136">        return nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L140">        this.nombre = nombre;</span>
+<span class="nc" id="L141">    }</span>
+
+    public int getSemana() {
+<span class="nc" id="L144">        return semana;</span>
+    }
+
+    public void setSemana(int semana) {
+<span class="nc" id="L148">        this.semana = semana;</span>
+<span class="nc" id="L149">    }</span>
+/**
+     * *
+     * Función que exporta un coste a un fichero de texto
+     *
+     * @param ruta String con la ruta del fichero
+     * @return true si se exportó con éxito; false en caso contrario
+     * @exception IOException si hubo problema al exportar
+     */
+    public boolean exportarAFichero(String ruta) throws IOException {
+        FileWriter flujoLectura;
+<span class="nc" id="L160">        BufferedWriter flujoBuffer = null;</span>
+        try {
+
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L164">            flujoLectura = new FileWriter(ruta);</span>
+<span class="nc" id="L165">            flujoBuffer = new BufferedWriter(flujoLectura);</span>
+<span class="nc" id="L166">            flujoBuffer.write(this.data());</span>
+<span class="nc" id="L167">            flujoBuffer.flush();</span>
+
+<span class="nc" id="L169">        } catch (IOException e) {</span>
+<span class="nc" id="L170">            System.out.println(&quot;Error E/S: &quot; + e);</span>
+<span class="nc" id="L171">            return false;</span>
+<span class="nc" id="L172">        }</span>
+<span class="nc" id="L173">        return true;</span>
+    }
+
+    /***
+     * Exporta al fichero en forma de string binario un objeto mediante el metodo data
+     * @param ruta String con la ruta del fichero
+     * @throws IOException 
+     */
+      public void exportarABinario(String ruta) throws IOException{
+     //Copiado de vindios.
+     //Copiado de vindios.
+      FileOutputStream flujoLectura;
+      ObjectOutputStream Oos;
+       try{
+           
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L189">            flujoLectura=new FileOutputStream(ruta, true);</span>
+            //Escribimos en el fichero un String y un caracter 97 (a)
+<span class="nc" id="L191">            Oos = new ObjectOutputStream(flujoLectura);</span>
+<span class="nc" id="L192">            Oos.writeObject(this);</span>
+           
+<span class="nc" id="L194">            Oos.flush();</span>
+                //Abro el stream, el fichero debe existir
+            
+            //Leemos el fichero y lo mostramos por pantalla
+            
+          
+<span class="nc" id="L200">        }catch(IOException e){</span>
+<span class="nc" id="L201">            System.out.println(&quot;Error E/S: &quot;+e);</span>
+<span class="nc" id="L202">        }</span>
+    
+
+    
+//String[]Cadenas=String split (&quot;\\|&quot;)
+    
+   
+<span class="nc" id="L209">    }</span>
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L213">        return &quot;Grupo{&quot; + &quot;id=&quot; + id + &quot;, anno=&quot; + anno + &quot;, nombre=&quot; + nombre + &quot;, semana=&quot; + semana + '}';</span>
+    }
+
+    public String data() {
+<span class="nc" id="L217">        return &quot;&quot; + getId() + &quot;/&quot; + getAnno() + &quot;/&quot; + getNombre() + &quot;/&quot; + getSemana();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

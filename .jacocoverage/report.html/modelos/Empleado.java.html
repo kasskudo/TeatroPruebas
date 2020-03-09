@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Empleado.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">Empleado.java</span></div><h1>Empleado.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package modelos;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.Serializable;
+import java.io.*;
+/**
+ *
+ * @author Andres 
+ * version 1.0
+ */
+public class Empleado implements Serializable {
+    
+    private static final long serialVersionUID = 123325L;
+
+    protected long id;
+    //Modela el identificador propio de cada empleado
+    private String nombre;
+    //Modela el nombre del empleado en cuestion
+    private String apellidos;
+    //Modela los dos primeros apellidos del empleado
+    private String nif;
+    //Modela el NIF del empleado
+    private String direccion;
+    //Modela la direccion de empadronamiento del empleado
+    private String telefono;
+    //Modela el telefono de contacto del empleado
+    private int horastrabajadas;
+    //Son las horas trabajadas totales
+    private double salarioporhora;
+    //Es la cantidad en euros que vale una horatrabajada
+    private double salariomensual;
+    //Es el total que recibe el empleado
+    /*
+    *Constructor por defecto.
+    */
+<span class="nc" id="L46">    public Empleado() {</span>
+        
+<span class="nc" id="L48">    }</span>
+/***
+ * 
+ * @param empleado 
+ */
+<span class="nc" id="L53">    public Empleado(Empleado empleado) {</span>
+<span class="nc" id="L54">        this.apellidos = empleado.getApellidos();</span>
+<span class="nc" id="L55">        this.direccion = empleado.getDireccion();</span>
+<span class="nc" id="L56">        this.id = empleado.getId();</span>
+<span class="nc" id="L57">        this.nombre = empleado.getNombre();</span>
+<span class="nc" id="L58">        this.nif = empleado.getNif();</span>
+<span class="nc" id="L59">        this.telefono = empleado.getTelefono();</span>
+<span class="nc" id="L60">        this.horastrabajadas = empleado.getHorastrabajadas();</span>
+<span class="nc" id="L61">        this.salarioporhora = empleado.getSalarioporhora();</span>
+<span class="nc" id="L62">        this.salariomensual = empleado.getSalariomensual();</span>
+<span class="nc" id="L63">    }</span>
+/***
+ * 
+ * @param id
+ * @param nombre
+ * @param apellidos
+ * @param nif
+ * @param direccion
+ * @param telefono
+ * @param horastrabajadas
+ * @param salarioporhora
+ * @param salariomensual 
+ */
+<span class="nc" id="L76">    public Empleado(long id, String nombre, String apellidos, String nif, String direccion, String telefono, int horastrabajadas, double salarioporhora, double salariomensual) {</span>
+<span class="nc" id="L77">        this.id = id;</span>
+<span class="nc" id="L78">        this.nombre = nombre;</span>
+<span class="nc" id="L79">        this.apellidos = apellidos;</span>
+<span class="nc" id="L80">        this.nif = nif;</span>
+<span class="nc" id="L81">        this.direccion = direccion;</span>
+<span class="nc" id="L82">        this.telefono = telefono;</span>
+<span class="nc" id="L83">        this.horastrabajadas = horastrabajadas;</span>
+<span class="nc" id="L84">        this.salarioporhora = salarioporhora;</span>
+<span class="nc" id="L85">        this.salariomensual = salariomensual;</span>
+
+<span class="nc" id="L87">    }</span>
+    /***
+     * crea un onjeto de tipo empleado y le pide al usuario que le meta los datos
+     * @return un objeto de tipo usuario
+     */
+       public static Empleado nuevoEmpleado() {
+<span class="nc" id="L93">        char s='s';</span>
+        Scanner in;
+        String nombre;
+        String apellidos;
+        String nif;
+        String direccion;
+        String telefono;
+        int horastrabajadas;
+        double salarioporhora;
+        double salariomensual;
+        
+<span class="nc" id="L104">    in = new Scanner(System.in);</span>
+<span class="nc" id="L105">    Empleado empleado = new Empleado();</span>
+    do{
+<span class="nc" id="L107">    System.out.println(&quot;Introduce tu nombre&quot;);</span>
+<span class="nc" id="L108">    nombre=in.nextLine();</span>
+<span class="nc" id="L109">    empleado.setNombre(nombre);</span>
+<span class="nc" id="L110">    System.out.println(&quot;Introduce tus apellidos&quot;);</span>
+<span class="nc" id="L111">    apellidos=in.nextLine();</span>
+<span class="nc" id="L112">    empleado.setApellidos(apellidos);</span>
+<span class="nc" id="L113">    System.out.println(&quot;Introduce tu nif&quot;);</span>
+<span class="nc" id="L114">    nif=in.nextLine();</span>
+<span class="nc" id="L115">    empleado.setNif(nif);</span>
+<span class="nc" id="L116">    System.out.println(&quot;Introduce tu direccion&quot;);</span>
+<span class="nc" id="L117">    direccion=in.nextLine();</span>
+<span class="nc" id="L118">    empleado.setDireccion(direccion);</span>
+<span class="nc" id="L119">    System.out.println(&quot;Introduce tu telefono&quot;);</span>
+<span class="nc" id="L120">    telefono=in.nextLine();</span>
+<span class="nc" id="L121">    empleado.setTelefono(telefono);</span>
+<span class="nc" id="L122">        System.out.println(&quot;Introduce las horas trabajadas&quot;);</span>
+<span class="nc" id="L123">    horastrabajadas=in.nextInt();</span>
+<span class="nc" id="L124">    empleado.setHorastrabajadas(horastrabajadas);</span>
+<span class="nc" id="L125">        System.out.println(&quot;Introduce el salario por hora&quot;);</span>
+<span class="nc" id="L126">    salarioporhora=in.nextDouble();</span>
+<span class="nc" id="L127">    empleado.setSalarioporhora(salarioporhora);</span>
+<span class="nc" id="L128">        System.out.println(&quot;Introduce el salario mínimo mensual&quot;);</span>
+<span class="nc" id="L129">    salariomensual=in.nextDouble();</span>
+<span class="nc" id="L130">    empleado.setSalariomensual(salariomensual);</span>
+<span class="nc" id="L131">      System.out.println(&quot;¿Los datos son correctos?&quot;+empleado);</span>
+      
+<span class="nc" id="L133">      System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L134">      s= in.next().charAt(0);</span>
+<span class="nc bnc" id="L135" title="All 4 branches missed.">      } while  (s!='s'&amp;&amp; s!='S' );           </span>
+
+<span class="nc" id="L137">    return empleado;</span>
+    
+       }
+           public Empleado getEmpleadoById (long Id) {
+<span class="nc" id="L141">    Empleado empleado = null;</span>
+    /* for(int i=0; i&lt; Lista.size (); i++){
+     e=(Empleado) Lista[i];
+     
+        if( e.getId()== Id){
+        }
+        
+     } 
+     */
+<span class="nc" id="L150">    return empleado;</span>
+    }
+    
+    public ArrayList&lt;Empleado&gt; getAllEmpleados() {
+<span class="nc" id="L154">       ArrayList&lt;Empleado&gt; Empleados = new ArrayList();</span>
+       /*for (int i=0; i&lt; Lista.size(); i++)
+           e= Empleado Lista[i];
+       Empleados.add(f);
+       
+       */
+<span class="nc" id="L160">        return Empleados;</span>
+    }
+    public long getId() {
+<span class="nc" id="L163">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="nc" id="L167">        this.id = id;</span>
+<span class="nc" id="L168">    }</span>
+
+    public String getNombre() {
+<span class="nc" id="L171">        return nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L175">        this.nombre = nombre;</span>
+<span class="nc" id="L176">    }</span>
+
+    public String getApellidos() {
+<span class="nc" id="L179">        return apellidos;</span>
+    }
+
+    public void setApellidos(String apellidos) {
+<span class="nc" id="L183">        this.apellidos = apellidos;</span>
+<span class="nc" id="L184">    }</span>
+
+    public String getNif() {
+<span class="nc" id="L187">        return nif;</span>
+    }
+
+    public void setNif(String nif) {
+<span class="nc" id="L191">        this.nif = nif;</span>
+<span class="nc" id="L192">    }</span>
+
+    public String getDireccion() {
+<span class="nc" id="L195">        return direccion;</span>
+    }
+
+    public void setDireccion(String direccion) {
+<span class="nc" id="L199">        this.direccion = direccion;</span>
+<span class="nc" id="L200">    }</span>
+
+    public String getTelefono() {
+<span class="nc" id="L203">        return telefono;</span>
+    }
+
+    public void setTelefono(String telefono) {
+<span class="nc" id="L207">        this.telefono = telefono;</span>
+<span class="nc" id="L208">    }</span>
+
+    public int getHorastrabajadas() {
+<span class="nc" id="L211">        return horastrabajadas;</span>
+    }
+
+    public void setHorastrabajadas(int horastrabajadas) {
+<span class="nc" id="L215">        this.horastrabajadas = horastrabajadas;</span>
+<span class="nc" id="L216">    }</span>
+
+    public double getSalarioporhora() {
+<span class="nc" id="L219">        return salarioporhora;</span>
+    }
+
+    public void setSalarioporhora(double salarioporhora) {
+<span class="nc" id="L223">        this.salarioporhora = salarioporhora;</span>
+<span class="nc" id="L224">    }</span>
+
+    public double getSalariomensual() {
+<span class="nc" id="L227">        return salariomensual;</span>
+    }
+
+    public void setSalariomensual(double salariomensual) {
+<span class="nc" id="L231">        this.salariomensual = salariomensual;</span>
+<span class="nc" id="L232">    }</span>
+  /**
+     * *
+     * Función que exporta un coste a un fichero de texto
+     *
+     * @param ruta String con la ruta del fichero
+     * @return true si se exportó con éxito; false en caso contrario
+     * @exception IOException si hubo problema al exportar
+     */
+    public boolean exportarAFichero(String ruta) throws IOException {
+        FileWriter flujoLectura;
+<span class="nc" id="L243">        BufferedWriter flujoBuffer = null;</span>
+        try {
+
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L247">            flujoLectura = new FileWriter(ruta);</span>
+<span class="nc" id="L248">            flujoBuffer = new BufferedWriter(flujoLectura);</span>
+<span class="nc" id="L249">            flujoBuffer.write(this.data());</span>
+<span class="nc" id="L250">            flujoBuffer.flush();</span>
+
+<span class="nc" id="L252">        } catch (IOException e) {</span>
+<span class="nc" id="L253">            System.out.println(&quot;Error E/S: &quot; + e);</span>
+<span class="nc" id="L254">            return false;</span>
+<span class="nc" id="L255">        }</span>
+<span class="nc" id="L256">        return true;</span>
+    }
+
+      /***
+     * Exporta al fichero en forma de string binario un objeto mediante el metodo data
+     * @param ruta String con la ruta del fichero
+     * @throws IOException 
+     */
+      public void exportarABinario(String ruta) throws IOException{
+     //Copiado de vindios.
+     //Copiado de vindios.
+      FileOutputStream flujoLectura;
+      ObjectOutputStream Oos;
+       try{
+           
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L272">            flujoLectura=new FileOutputStream(ruta, true);</span>
+            //Escribimos en el fichero un String y un caracter 97 (a)
+<span class="nc" id="L274">            Oos = new ObjectOutputStream(flujoLectura);</span>
+<span class="nc" id="L275">            Oos.writeObject(this);</span>
+           
+<span class="nc" id="L277">            Oos.flush();</span>
+                //Abro el stream, el fichero debe existir
+            
+            //Leemos el fichero y lo mostramos por pantalla
+            
+          
+<span class="nc" id="L283">        }catch(IOException e){</span>
+<span class="nc" id="L284">            System.out.println(&quot;Error E/S: &quot;+e);</span>
+<span class="nc" id="L285">        }</span>
+    
+
+    
+//String[]Cadenas=String split (&quot;\\|&quot;)
+    
+   
+<span class="nc" id="L292">    }</span>
+    
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L297">        return &quot;Empleado{&quot; + &quot;id=&quot; + id + &quot;, nombre=&quot; + nombre + &quot;, apellidos=&quot; + apellidos + &quot;, nif=&quot; + nif + &quot;, direccion=&quot; + direccion + &quot;, telefono=&quot; + telefono + &quot;, horastrabajadas=&quot; + horastrabajadas + &quot;, salarioporhora=&quot; + salarioporhora + &quot;, salariomensual=&quot; + salariomensual + '}';</span>
+    }
+    
+    public String data() {
+<span class="nc" id="L301">        return &quot;&quot; + getId() + &quot;|&quot; + getNif() + &quot;|&quot; + getNombre() + &quot;|&quot; + getApellidos() + &quot;|&quot; + getTelefono() + &quot;|&quot; + getDireccion() + &quot;|&quot; + getHorastrabajadas() + &quot;|&quot; + getSalarioporhora() + &quot;|&quot; + getSalariomensual();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

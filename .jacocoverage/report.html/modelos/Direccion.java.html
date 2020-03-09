@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Direccion.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">Direccion.java</span></div><h1>Direccion.java</h1><pre class="source lang-java linenums">package modelos;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author roter
+ * @version 1.0
+ */
+public class Direccion extends EOficina implements Serializable {
+
+    private int añoscargo;
+    
+    /**
+     * Modela annio los directores cuantos años llevan en el cargo puede ser de
+ positivo y no pueden ser negativos
+     */
+
+    public Direccion() {
+<span class="nc" id="L32">        super();</span>
+<span class="nc" id="L33">    }</span>
+    /***
+     * 
+     * @param e 
+     */
+     public Direccion(Empleado e) {
+<span class="nc" id="L39">        super(e);</span>
+ 
+<span class="nc" id="L41">    }</span>
+     /***
+      * 
+      * @param e
+      * @param añoscargo 
+      */
+     public Direccion(Empleado e,int añoscargo) {
+<span class="nc" id="L48">        super(e);</span>
+<span class="nc" id="L49">        this.añoscargo =  añoscargo;</span>
+<span class="nc" id="L50">    }</span>
+/**
+ * 
+ * @param id
+ * @param nombre
+ * @param apellidos
+ * @param nif
+ * @param direccion
+ * @param telefono
+ * @param antiguedad
+ * @param horastrabajadas
+ * @param salarioporhora
+ * @param salariomensual 
+ */
+    public Direccion(long id, String nombre, String apellidos, String nif, String direccion, String telefono,  int antiguedad, int horastrabajadas, double salarioporhora, double salariomensual) {
+<span class="nc" id="L65">        super(id, nombre, apellidos, nif, direccion, telefono,  antiguedad, horastrabajadas, salarioporhora, salariomensual);</span>
+<span class="nc" id="L66">    }</span>
+/***
+ * 
+ * @param d 
+ */
+    public Direccion(Direccion d) {
+<span class="nc" id="L72">        super(d);</span>
+<span class="nc" id="L73">        this.añoscargo = d.getAñoscargo();</span>
+
+<span class="nc" id="L75">    }</span>
+/***
+ * crea un objeto de tipo direccion y le pide al usuario meter los datos
+ * @return un objeto de tipo direccion
+ */
+    public static Direccion nuevoDireccion() {
+<span class="nc" id="L81">        char s='s';</span>
+        Scanner in;
+        int annio;
+        
+<span class="nc" id="L85">        in = new Scanner(System.in);</span>
+<span class="nc" id="L86">        Direccion direccion=new Direccion();</span>
+        do{
+<span class="nc" id="L88">        direccion = new Direccion(EOficina.nuevoEOficina());</span>
+<span class="nc" id="L89">        System.out.println(&quot;Años al cargo&quot;);</span>
+<span class="nc" id="L90">        annio = in.nextInt();</span>
+<span class="nc" id="L91">  System.out.println(&quot;¿Los datos son correctos?&quot;+direccion);</span>
+      
+<span class="nc" id="L93">      System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L94">      s= in.next().charAt(0);</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">      } while  (s!='s'&amp;&amp; s!='S' );           </span>
+
+<span class="nc" id="L97">        return direccion;</span>
+
+    }
+
+    public Direccion getDireccionById(long Id) {
+<span class="nc" id="L102">        Direccion d = null;</span>
+        /* for(int i=0; i&lt; Lista.size (); i++){
+     direccion=(Direccion) Lista[i];
+     
+        if( direccion.getId()== Id){
+        }
+        
+     } 
+         */
+<span class="nc" id="L111">        return d;</span>
+    }
+
+    public ArrayList&lt;Direccion&gt; getAllDirecciones() {
+<span class="nc" id="L115">        ArrayList&lt;Direccion&gt; Direcciones = new ArrayList();</span>
+        /*for (int i=0; i&lt; Lista.size(); i++)
+           direccion= Direcciones Lista[i];
+        Direcciones.add(f);
+       
+         */
+<span class="nc" id="L121">        return Direcciones;</span>
+    }
+
+    public int getAñoscargo() {
+<span class="nc" id="L125">        return añoscargo;</span>
+    }
+
+    public void setAñoscargo(int añoscargo) {
+<span class="nc" id="L129">        this.añoscargo = añoscargo;</span>
+<span class="nc" id="L130">    }</span>
+    /**
+     * *
+     * Función que exporta un coste a un fichero de texto
+     *
+     * @param ruta String con la ruta del fichero
+     * @return true si se exportó con éxito; false en caso contrario
+     * @exception IOException si hubo problema al exportar
+     */
+    public boolean exportarAFichero(String ruta) throws IOException {
+        FileWriter flujoLectura;
+<span class="nc" id="L141">        BufferedWriter flujoBuffer = null;</span>
+        try {
+
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L145">            flujoLectura = new FileWriter(ruta);</span>
+<span class="nc" id="L146">            flujoBuffer = new BufferedWriter(flujoLectura);</span>
+<span class="nc" id="L147">            flujoBuffer.write(this.data());</span>
+<span class="nc" id="L148">            flujoBuffer.flush();</span>
+
+<span class="nc" id="L150">        } catch (IOException e) {</span>
+<span class="nc" id="L151">            System.out.println(&quot;Error E/S: &quot; + e);</span>
+<span class="nc" id="L152">            return false;</span>
+<span class="nc" id="L153">        }</span>
+<span class="nc" id="L154">        return true;</span>
+    }
+
+      /***
+     * Exporta al fichero en forma de string binario un objeto mediante el metodo data
+     * @param ruta String con la ruta del fichero
+     * @throws IOException 
+     */
+      public void exportarABinario(String ruta) throws IOException{
+     //Copiado de vindios.
+     //Copiado de vindios.
+      FileOutputStream flujoLectura;
+      ObjectOutputStream Oos;
+       try{
+           
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L170">            flujoLectura=new FileOutputStream(ruta, true);</span>
+            //Escribimos en el fichero un String y un caracter 97 (a)
+<span class="nc" id="L172">            Oos = new ObjectOutputStream(flujoLectura);</span>
+<span class="nc" id="L173">            Oos.writeObject(this);</span>
+           
+<span class="nc" id="L175">            Oos.flush();</span>
+                //Abro el stream, el fichero debe existir
+            
+            //Leemos el fichero y lo mostramos por pantalla
+            
+          
+<span class="nc" id="L181">        }catch(IOException e){</span>
+<span class="nc" id="L182">            System.out.println(&quot;Error E/S: &quot;+e);</span>
+<span class="nc" id="L183">        }</span>
+    
+
+    
+//String[]Cadenas=String split (&quot;\\|&quot;)
+    
+   
+<span class="nc" id="L190">    }</span>
+    
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L195">        return super.toString() + &quot;Direccion{&quot; + &quot;a\u00f1oscargo=&quot; + añoscargo + '}';</span>
+    }
+
+    public String data() {
+<span class="nc" id="L199">        return super.data() + &quot;&quot; + getAñoscargo() ;</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

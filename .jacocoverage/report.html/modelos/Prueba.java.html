@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Prueba.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">Prueba.java</span></div><h1>Prueba.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package modelos;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *(idGrupo,seman,anio,nombre)
+(idEteatro,idGrupo,atributosEpleado,categoria)Mario
+(idFranquicia,idGrupo,idInforme,idDireccion,fechaCreacion,ubicacion,accesible)Mario
+(idInforme,idSecretariado,mes,anio,balance)Mario
+(idSecretariado,atributosEOficina)
+(idDireccion,atributosEOficina)
+(idCoste,idInforme,idAcomodador,idLimpieza,idNomina,fecha,importe,reporte)Aidan
+(idBeneficio,idInforme,idTaquilla,idBono,fecha,reporte,importe)Aidan
+(idAcomodador,atributosdeETeatro)
+(idLimpieza,atributosdeETeatro)
+(idNomina,idSecretariado,idEmpleado,revisado,mes,anio)Andres
+(idTaquilla,atributosETeatro)
+(idBono,idUsuario,tipo,mes)Andres
+(idUsuario,nombre,telefono,nif,email)
+(idEmpleado,nombre,apellidos,nif,direccion,telefono)
+(idEOficina,atributosEmpleado,antiguedad)
+ * @author roter
+ */
+<span class="nc" id="L33">public class Prueba {</span>
+
+    /***
+     * Este metodo main abre un menu con cuatro opciones. Pulsando 1 creamos un nuevo bono, pulsando 2 un nuevo coste, pulsando 3 llamamos
+     * al metodo &quot;calcularNomina&quot; y pulsando 4, aunque ponga salir, deberia ser una prueba para el metodo LeerFichero de la clase coste.
+     * @throws ParseException Puede lanzar ParseException
+     * @throws CosteException Puede lanzar CosteException
+     * @throws IOException Puede lanzar IOException
+     */
+    public static void main(String[] args) throws ParseException, CosteException, IOException{
+        //Franquicia.nuevafranquicia();
+        //Usuario.nuevoUsuario();
+        //  Acomodador.nuevoAcomodador();
+        // Beneficio.nuevoBeneficio();
+//           Bono.nuevoBono();
+        //   Coste.nuevoCoste();
+//           Direccion.nuevoDireccion();
+//           EOficina.nuevoEOficina();
+//           ETeatro.nuevoETeatro();
+//           Empleado.nuevoEmpleado();
+//           Grupo.nuevogrupo();
+//           Informe.nuevoinforme();
+//           Nomina.nuevoNomina();
+//           Secretariado.nuevoSecretariado();
+//           Taquilla.nuevoTaquilla();
+        //  Nomina n=Secretariado.calcularnomina();
+        //System.out.println(&quot;Tu nomina&quot;+n);
+
+        /*     Secretariado s=new Secretariado();
+            s.calcularNomina();
+            Acomodador a=new Acomodador();
+            a = Acomodador.nuevoAcomodador();
+            ArrayList&lt;Coste&gt; costesReparacion = a.añadirCosteReparacion();
+         */
+<span class="nc" id="L67">        String texto = &quot;texto.txt&quot;;</span>
+<span class="nc" id="L68">        Acomodador acomo=new Acomodador();</span>
+<span class="nc" id="L69">       acomo =Acomodador.nuevoAcomodador();</span>
+<span class="nc" id="L70">       acomo.exportarABinario(texto);</span>
+        int opcion;
+<span class="nc" id="L72">      Scanner in = new Scanner(System.in);</span>
+        do {
+              
+<span class="nc" id="L75">        System.out.println(&quot;Pulse 1 para comprar bono&quot;);</span>
+<span class="nc" id="L76">        System.out.println(&quot;Pulse 2 reportar costes&quot;);</span>
+<span class="nc" id="L77">        System.out.println(&quot;Pulse 3 para calcular nomina&quot;);</span>
+<span class="nc" id="L78">        System.out.println(&quot;Pulse 4 para leer el fichero de texto de la clase coste&quot;);</span>
+<span class="nc" id="L79">        opcion = in.nextInt();</span>
+            
+<span class="nc bnc" id="L81" title="All 5 branches missed.">            switch (opcion) {</span>
+                case 1:
+<span class="nc" id="L83">                    Bono bono = new Bono();</span>
+
+<span class="nc" id="L85">                    Usuario aidan = Usuario.nuevoUsuario();</span>
+
+<span class="nc" id="L87">                    aidan.registrarusuario();</span>
+<span class="nc" id="L88">                    System.out.println(&quot;Usuario registrado:&quot; + aidan.isRegistrado());</span>
+<span class="nc" id="L89">                    bono = aidan.comprarbono();</span>
+                    
+
+<span class="nc" id="L92">                    System.out.println(&quot;Tu bono&quot; + bono);</span>
+<span class="nc" id="L93">                    break;</span>
+                case 2:
+<span class="nc" id="L95">                    Coste.nuevoCoste();</span>
+<span class="nc" id="L96">                    break;</span>
+
+                case 3:
+<span class="nc" id="L99">                    boolean nominacorrecta = true;</span>
+<span class="nc" id="L100">                    Secretariado secretario = new Secretariado();</span>
+                    do {
+                        try {
+<span class="nc" id="L103">                            secretario.calcularNomina();</span>
+<span class="nc" id="L104">                        } catch (NominaException ex) {</span>
+<span class="nc" id="L105">                            nominacorrecta = false;</span>
+<span class="nc" id="L106">                            System.out.println(&quot;Los datos son incorrectos&quot;);</span>
+<span class="nc" id="L107">                        }</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">                    } while (!nominacorrecta);</span>
+<span class="nc" id="L109">                    break;</span>
+
+                case 4:
+<span class="nc" id="L112">                    Coste c = new Coste();</span>
+//                    c = Coste.nuevoCoste();
+//                    if(c!=null)
+//                        System.out.println(&quot;Creado coste correctamente&quot;);
+//                        
+<span class="nc" id="L117">                    texto = &quot;D://texto.txt&quot;;</span>
+<span class="nc" id="L118">                    c.exportarAFichero(texto);</span>
+<span class="nc" id="L119">                    String texto2 = &quot;D://texto2.txt&quot;;</span>
+<span class="nc" id="L120">                    ArrayList&lt;Coste&gt; costes = Coste.LeerFichero(texto2);</span>
+<span class="nc" id="L121">                    break;</span>
+                default:
+<span class="nc" id="L123">                    System.out.println(&quot;Valor incorrecto!&quot;);</span>
+                        
+            }
+<span class="nc bnc" id="L126" title="All 2 branches missed.">        } while (opcion != 4);</span>
+
+<span class="nc" id="L128">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
