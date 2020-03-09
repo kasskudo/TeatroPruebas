@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Nomina.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">Nomina.java</span></div><h1>Nomina.java</h1><pre class="source lang-java linenums">package modelos;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Mario
+ * @version 1.1
+ */
+public class Nomina implements Serializable {
+
+    protected long id;/*Modela id. Valor positivo*/
+    private long idSecretario;
+    private long idEmpleado;
+    private int mes;/*Modela mes. Valor positivo*/
+    private int anio;/*Modela año. Valor positivo*/
+    private boolean revisado;/*Modela si está revisada o no*/
+    private Empleado empleado;
+    private Coste coste;
+    private Secretariado secretariado;
+
+<span class="nc" id="L30">    public Nomina() {</span>
+
+<span class="nc" id="L32">    }</span>
+/***
+ * 
+ * @param id
+ * @param idSecretario
+ * @param idEmpleado
+ * @param mes
+ * @param anio
+ * @param revisado
+ * @param empleado
+ * @param coste
+ * @param secretariado
+ * @throws NominaException 
+ */
+<span class="nc" id="L46">    public Nomina(long id, long idSecretario, long idEmpleado, int mes, int anio, boolean revisado, Empleado empleado, Coste coste, Secretariado secretariado) throws NominaException {</span>
+<span class="nc" id="L47">        this.id = id;</span>
+<span class="nc" id="L48">        this.idSecretario = idSecretario;</span>
+<span class="nc" id="L49">        this.idEmpleado = idEmpleado;</span>
+<span class="nc" id="L50">        this.mes = mes;</span>
+<span class="nc bnc" id="L51" title="All 4 branches missed.">         if (mes &lt; 1 || mes &gt; 12) {</span>
+<span class="nc" id="L52">            throw new NominaException(&quot;El mes sólo es valido del uno al doce&quot;);</span>
+        }
+<span class="nc" id="L54">        this.anio = anio;</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">        if (anio &lt; 1980 || anio &gt; 2021) {</span>
+<span class="nc" id="L56">            throw new NominaException(&quot;El año sólo puede ser un valor entre 1980 a 2021 &quot;);</span>
+        }
+<span class="nc" id="L58">        this.revisado = revisado;</span>
+<span class="nc" id="L59">        this.empleado = empleado;</span>
+<span class="nc" id="L60">        this.coste = coste;</span>
+<span class="nc" id="L61">        this.secretariado = secretariado;</span>
+<span class="nc" id="L62">    }</span>
+/***
+ * 
+ * @param n
+ * @throws NominaException 
+ */
+<span class="nc" id="L68">    public Nomina(Nomina n) throws NominaException {</span>
+
+<span class="nc" id="L70">        this.id = n.getId();</span>
+<span class="nc" id="L71">        this.idEmpleado = n.getIdEmpleado();</span>
+<span class="nc" id="L72">        this.idSecretario = n.getIdSecretario();</span>
+<span class="nc" id="L73">        this.mes = n.getMes();</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">        if (mes &lt; 1 || mes &gt; 12) {</span>
+<span class="nc" id="L75">            throw new NominaException(&quot;El mes sólo es valido del uno al doce&quot;);</span>
+        }
+<span class="nc" id="L77">        this.anio = n.getAnio();   </span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">        if (anio &lt; 1980 || anio &gt; 2021) {</span>
+<span class="nc" id="L79">            throw new NominaException(&quot;El año sólo puede ser un valor entre 1980 a 2021 &quot;);</span>
+        }
+<span class="nc" id="L81">        this.revisado = n.getRevisado();</span>
+<span class="nc" id="L82">    }</span>
+
+    public Empleado getEmpleado() {
+<span class="nc" id="L85">        return empleado;</span>
+    }
+
+    public void setEmpleado(Empleado empleado) {
+<span class="nc" id="L89">        this.empleado = empleado;</span>
+<span class="nc" id="L90">    }</span>
+
+    public Coste getCoste() {
+<span class="nc" id="L93">        return coste;</span>
+    }
+
+    public void setCoste(Coste coste) {
+<span class="nc" id="L97">        this.coste = coste;</span>
+<span class="nc" id="L98">    }</span>
+
+    public Secretariado getSecretariado() {
+<span class="nc" id="L101">        return secretariado;</span>
+    }
+
+    public void setSecretariado(Secretariado secretariado) {
+<span class="nc" id="L105">        this.secretariado = secretariado;</span>
+<span class="nc" id="L106">    }</span>
+
+    public long getId() {
+<span class="nc" id="L109">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="nc" id="L113">        this.id = id;</span>
+<span class="nc" id="L114">    }</span>
+
+    public int getMes() {
+<span class="nc" id="L117">        return mes;</span>
+    }
+
+    public void setMes(int mes) throws NominaException {
+<span class="nc" id="L121">        this.mes = mes;</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">        if (mes &lt; 1 || mes &gt; 12) {</span>
+<span class="nc" id="L123">            throw new NominaException(&quot;El mes sólo es valido del uno al doce&quot;);</span>
+        }
+<span class="nc" id="L125">    }</span>
+
+    public int getAnio() {
+<span class="nc" id="L128">        return anio;</span>
+    }
+
+    public long getIdSecretario() {
+<span class="nc" id="L132">        return idSecretario;</span>
+    }
+
+    public void setIdSecretario(long idSecretario) {
+<span class="nc" id="L136">        this.idSecretario = idSecretario;</span>
+<span class="nc" id="L137">    }</span>
+
+    public long getIdEmpleado() {
+<span class="nc" id="L140">        return idEmpleado;</span>
+    }
+
+    public void setIdEmpleado(long idEmpleado) {
+<span class="nc" id="L144">        this.idEmpleado = idEmpleado;</span>
+<span class="nc" id="L145">    }</span>
+
+    public void setAnio(int anio) throws NominaException {
+<span class="nc" id="L148">        this.anio = anio;</span>
+<span class="nc bnc" id="L149" title="All 4 branches missed.">        if (anio &lt; 1980 || anio &gt; 2021) {</span>
+<span class="nc" id="L150">            throw new NominaException(&quot;El año sólo puede ser un valor entre 1980 a 2021 &quot;);</span>
+        }
+<span class="nc" id="L152">    }</span>
+
+    public boolean getRevisado() {
+<span class="nc" id="L155">        return revisado;</span>
+    }
+
+    public void setRevisado(boolean revisado) {
+<span class="nc" id="L159">        this.revisado = revisado;</span>
+<span class="nc" id="L160">    }</span>
+    /***
+     * crea un objeto de tipo nomina y le pide al usuario que le meta datos
+     * @return un objeto de tipo nomina
+     * @throws ParseException
+     * @throws NominaException
+     * @throws CosteException 
+     */
+    public static Nomina nuevoNomina() throws ParseException, NominaException,CosteException {
+<span class="nc" id="L169">    char g='s';</span>
+<span class="nc" id="L170">    Nomina nomina = new Nomina();</span>
+    int mes;
+    int año;
+<span class="nc" id="L173">    char c='s';</span>
+    boolean accesible;
+<span class="nc" id="L175">    char z='s';</span>
+    Scanner in;
+    Secretariado secretariado;
+    Empleado empleado;
+    Coste coste;
+<span class="nc" id="L180">    in = new Scanner(System.in);</span>
+    do{
+<span class="nc" id="L182">    System.out.println(&quot;Mete el mes de creacion de la nomina&quot;);</span>
+<span class="nc" id="L183">    mes=in.nextInt();</span>
+<span class="nc" id="L184">    nomina.setMes(mes);</span>
+<span class="nc bnc" id="L185" title="All 4 branches missed.">    if (mes &lt; 1 || mes &gt; 12) {</span>
+<span class="nc" id="L186">    throw new NominaException(&quot;El mes sólo es valido del uno al doce&quot;);</span>
+    }
+<span class="nc" id="L188">    System.out.println(&quot;Mete el año de creacion&quot;);</span>
+<span class="nc" id="L189">    año=in.nextInt();</span>
+<span class="nc" id="L190">    nomina.setAnio(año);        </span>
+<span class="nc bnc" id="L191" title="All 4 branches missed.">    if (año &lt; 1980 || año &gt; 2021) {</span>
+<span class="nc" id="L192">            throw new NominaException(&quot;El año sólo puede ser un valor entre 1980 a 2021 &quot;);</span>
+        }
+    do{
+<span class="nc" id="L195">    System.out.println(&quot;Di si esta revisado s para si n para no&quot;);</span>
+<span class="nc" id="L196">    c = in.next().charAt(0); </span>
+    
+    
+<span class="nc bnc" id="L199" title="All 8 branches missed.">    } while (c!='s'&amp;&amp; c!='S' &amp;&amp; c!='n'&amp;&amp; c!='N' );</span>
+<span class="nc bnc" id="L200" title="All 4 branches missed.">    if  (c=='s' || c=='S') accesible=true; </span>
+<span class="nc" id="L201">    else accesible=false;</span>
+<span class="nc" id="L202">    nomina.setRevisado(accesible);</span>
+<span class="nc" id="L203">       System.out.println(&quot;quieres asignar un secretariado a esta nomina&quot;);</span>
+<span class="nc" id="L204">             z = in.next().charAt(0);</span>
+<span class="nc bnc" id="L205" title="All 4 branches missed.">         if (z == 's' || z == 'S') {</span>
+<span class="nc" id="L206">             secretariado=Secretariado.nuevoSecretariado();</span>
+<span class="nc" id="L207">    nomina.setSecretariado(secretariado);</span>
+            } else {
+<span class="nc" id="L209">                System.out.println(&quot;No has asiganado un secretariado a esta nomina&quot;);</span>
+            }
+      
+<span class="nc" id="L212">       System.out.println(&quot;quieres asignar un empleado a esta nomina&quot;);</span>
+<span class="nc" id="L213">             z = in.next().charAt(0);</span>
+<span class="nc bnc" id="L214" title="All 4 branches missed.">         if (z == 's' || z == 'S') {</span>
+<span class="nc" id="L215">             empleado=Empleado.nuevoEmpleado();</span>
+<span class="nc" id="L216">    nomina.setEmpleado(empleado);</span>
+            } else {
+<span class="nc" id="L218">                System.out.println(&quot;No has asiganado un empleado a esta nomina&quot;);</span>
+            }
+<span class="nc" id="L220">         System.out.println(&quot;quieres asignar un coste a esta nomina&quot;);</span>
+<span class="nc" id="L221">          z = in.next().charAt(0);</span>
+<span class="nc bnc" id="L222" title="All 4 branches missed.">         if (z == 's' || z == 'S') {</span>
+<span class="nc" id="L223">           coste=Coste.nuevoCoste();</span>
+<span class="nc" id="L224">    nomina.setCoste(coste);</span>
+            } else {
+<span class="nc" id="L226">                System.out.println(&quot;No has asiganado un coste a esta nomina&quot;);</span>
+            }
+
+<span class="nc" id="L229">    System.out.println(&quot;¿Los datos son correctos?&quot;+nomina);</span>
+      
+<span class="nc" id="L231">      System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L232">      g= in.next().charAt(0);</span>
+<span class="nc bnc" id="L233" title="All 4 branches missed.">    } while  (g!='s'&amp;&amp; g!='S' );  </span>
+<span class="nc" id="L234">    return nomina;</span>
+    
+    }
+    public Nomina getNominaById(long id) {
+
+<span class="nc" id="L239">        Nomina n = null;</span>
+        /* for(int i=0; i&lt; Lista.size (); i++){
+     n=(Nomina) Lista[i];
+     
+        if( f.getId()== Id){
+        }
+        
+     } 
+         */
+<span class="nc" id="L248">        return n;</span>
+    }
+
+    public ArrayList&lt;Nomina&gt; getAllNominas() {
+<span class="nc" id="L252">        ArrayList&lt;Nomina&gt; Nominas = new ArrayList();</span>
+        /*for (int i=0; i&lt; Lista.size(); i++)
+           f= Franquicia Lista[i];
+        Franquicias.add(f);
+       
+         */
+<span class="nc" id="L258">        return Nominas;</span>
+    }
+   /**
+     * *
+     * Función que exporta un coste a un fichero de texto
+     *
+     * @param ruta String con la ruta del fichero
+     * @return true si se exportó con éxito; false en caso contrario
+     * @exception IOException si hubo problema al exportar
+     */
+    public boolean exportarAFichero(String ruta) throws IOException {
+        FileWriter flujoLectura;
+<span class="nc" id="L270">        BufferedWriter flujoBuffer = null;</span>
+        try {
+
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L274">            flujoLectura = new FileWriter(ruta);</span>
+<span class="nc" id="L275">            flujoBuffer = new BufferedWriter(flujoLectura);</span>
+<span class="nc" id="L276">            flujoBuffer.write(this.data());</span>
+<span class="nc" id="L277">            flujoBuffer.flush();</span>
+
+<span class="nc" id="L279">        } catch (IOException e) {</span>
+<span class="nc" id="L280">            System.out.println(&quot;Error E/S: &quot; + e);</span>
+<span class="nc" id="L281">            return false;</span>
+<span class="nc" id="L282">        }</span>
+<span class="nc" id="L283">        return true;</span>
+    }
+          /***
+     * Exporta al fichero en forma de string binario un objeto mediante el metodo data
+     * @param ruta String con la ruta del fichero
+     * @throws IOException 
+     */
+      public void exportarABinario(String ruta) throws IOException{
+     //Copiado de vindios.
+     //Copiado de vindios.
+      FileOutputStream flujoLectura;
+      ObjectOutputStream Oos;
+       try{
+           
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L298">            flujoLectura=new FileOutputStream(ruta, true);</span>
+            //Escribimos en el fichero un String y un caracter 97 (a)
+<span class="nc" id="L300">            Oos = new ObjectOutputStream(flujoLectura);</span>
+<span class="nc" id="L301">            Oos.writeObject(this);</span>
+           
+<span class="nc" id="L303">            Oos.flush();</span>
+                //Abro el stream, el fichero debe existir
+            
+            //Leemos el fichero y lo mostramos por pantalla
+            
+          
+<span class="nc" id="L309">        }catch(IOException e){</span>
+<span class="nc" id="L310">            System.out.println(&quot;Error E/S: &quot;+e);</span>
+<span class="nc" id="L311">        }</span>
+    
+
+    
+//String[]Cadenas=String split (&quot;\\|&quot;)
+    
+   
+<span class="nc" id="L318">    }</span>
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L322">        return &quot;Nomina{&quot; + &quot;id=&quot; + id + &quot;, idSecretario=&quot; + idSecretario + &quot;, idEmpleado=&quot; + idEmpleado + &quot;, mes=&quot; + mes + &quot;, anio=&quot; + anio + &quot;, revisado=&quot; + revisado + &quot;, empleado=&quot; + empleado + &quot;, coste=&quot; + coste + &quot;, secretariado=&quot; + secretariado + '}';</span>
+    }
+
+    public String data() {
+<span class="nc" id="L326">        return &quot;&quot; + getId() + &quot;|&quot; + getIdSecretario() + &quot;|&quot; + getIdEmpleado() + &quot;|&quot; + getMes() + &quot;|&quot; + getAnio() + &quot;|&quot; + getRevisado() + &quot;|&quot; + getEmpleado() + &quot;|&quot; + getCoste() + &quot;|&quot; + getSecretariado();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

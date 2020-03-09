@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Usuario.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">Usuario.java</span></div><h1>Usuario.java</h1><pre class="source lang-java linenums">package modelos;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Mario
+ * @version 1.0
+ */
+public class Usuario implements Serializable {
+
+    protected long identificador;/*Modela id. Valor positivo*/
+
+    private String nombre;/*Modela nombre. Contiene solo caracteres alfabéticos*/
+
+    private String telefono;/*Modela id. Valor positivo*/
+
+    private String NIF;/*Modela id. Valor positivo*/
+
+    private String email;/*Modela id. Valor positivo. Contiene números, letras y caracteres especiales.*/
+
+    private boolean registrado;
+
+<span class="nc" id="L31">    public Usuario() {</span>
+<span class="nc" id="L32">    }</span>
+    /**
+     * Constructor de argumentos.
+     * @param nombre
+     * @param telefono
+     * @param NIF
+     * @param email
+     * @param registrado Un boolean te dice si esta registrado o no.
+     */
+<span class="nc" id="L41">    public Usuario(String nombre, String telefono, String NIF, String email, boolean registrado) {</span>
+
+<span class="nc" id="L43">        this.nombre = nombre;</span>
+<span class="nc" id="L44">        this.telefono = telefono;</span>
+<span class="nc" id="L45">        this.NIF = NIF;</span>
+<span class="nc" id="L46">        this.email = email;</span>
+<span class="nc" id="L47">        this.registrado = registrado;</span>
+<span class="nc" id="L48">    }</span>
+    /**
+     * Constructor de copia.
+     * @param u 
+     */
+<span class="nc" id="L53">    public Usuario(Usuario u) {</span>
+
+<span class="nc" id="L55">        this.nombre = u.getNombre();</span>
+<span class="nc" id="L56">        this.telefono = u.getTelefono();</span>
+<span class="nc" id="L57">        this.NIF = u.getNIF();</span>
+<span class="nc" id="L58">        this.email = u.getEmail();</span>
+<span class="nc" id="L59">        this.registrado = u.isRegistrado();</span>
+<span class="nc" id="L60">    }</span>
+
+    public long getIdentificador() {
+<span class="nc" id="L63">        return identificador;</span>
+    }
+
+    public void setIdentificador(long identificador) {
+<span class="nc" id="L67">        this.identificador = identificador;</span>
+<span class="nc" id="L68">    }</span>
+
+    public String getNombre() {
+<span class="nc" id="L71">        return nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L75">        this.nombre = nombre;</span>
+<span class="nc" id="L76">    }</span>
+
+    public String getTelefono() {
+<span class="nc" id="L79">        return telefono;</span>
+    }
+
+    public void setTelefono(String telefono) {
+<span class="nc" id="L83">        this.telefono = telefono;</span>
+<span class="nc" id="L84">    }</span>
+
+    public String getNIF() {
+<span class="nc" id="L87">        return NIF;</span>
+    }
+
+    public void setNIF(String NIF) {
+<span class="nc" id="L91">        this.NIF = NIF;</span>
+<span class="nc" id="L92">    }</span>
+
+    public String getEmail() {
+<span class="nc" id="L95">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="nc" id="L99">        this.email = email;</span>
+<span class="nc" id="L100">    }</span>
+
+    public boolean isRegistrado() {
+<span class="nc" id="L103">        return registrado;</span>
+    }
+
+    public void setRegistrado(boolean registrado) {
+<span class="nc" id="L107">        this.registrado = registrado;</span>
+<span class="nc" id="L108">    }</span>
+
+    /**
+     * *
+     * Este metodo crea un nuevo usuario predeterminado con los datos que se
+     * vayan introduciendo por teclado en los campos requeridos.
+     *
+     * @return Devuelve un nuevo usuario ya creado con los datos introducidos.
+     */
+    public static Usuario nuevoUsuario() {
+
+<span class="nc" id="L119">        char s = 's';</span>
+
+<span class="nc" id="L121">        Usuario usuario = new Usuario();</span>
+        Scanner in;
+        String nombre;
+        String telefono;
+        String nif;
+        String email;
+        do {
+<span class="nc" id="L128">            in = new Scanner(System.in);</span>
+<span class="nc" id="L129">            System.out.println(&quot;Introduzca Nombre&quot;);</span>
+<span class="nc" id="L130">            nombre = in.nextLine();</span>
+<span class="nc" id="L131">            usuario.setNombre(nombre);</span>
+<span class="nc" id="L132">            System.out.println(&quot;Introduzca su telefono&quot;);</span>
+<span class="nc" id="L133">            telefono = in.nextLine();</span>
+<span class="nc" id="L134">            usuario.setTelefono(telefono);</span>
+<span class="nc" id="L135">            System.out.println(&quot;Introduzca su nif&quot;);</span>
+<span class="nc" id="L136">            nif = in.nextLine();</span>
+<span class="nc" id="L137">            usuario.setNIF(nif);</span>
+<span class="nc" id="L138">            System.out.println(&quot;Introduzca email&quot;);</span>
+<span class="nc" id="L139">            email = in.nextLine();</span>
+<span class="nc" id="L140">            usuario.setEmail(email);</span>
+<span class="nc" id="L141">            System.out.println(&quot;¿Los datos son correctos?&quot; + usuario);</span>
+
+<span class="nc" id="L143">            System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L144">            s = in.next().charAt(0);</span>
+<span class="nc bnc" id="L145" title="All 4 branches missed.">        } while (s != 's' &amp;&amp; s != 'S');</span>
+
+<span class="nc" id="L147">        return usuario;</span>
+
+    }
+
+    public Usuario getUsuarioById(long id) {
+
+<span class="nc" id="L153">        Usuario u = null;</span>
+        /* for(int i=0; i&lt; Lista.size (); i++){
+         n=(Usuario) Lista[i];
+     
+         if( f.getId()== Id){
+         }
+        
+         } 
+         */
+<span class="nc" id="L162">        return u;</span>
+    }
+
+    public ArrayList&lt;Usuario&gt; getAllUsuarios() {
+<span class="nc" id="L166">        ArrayList&lt;Usuario&gt; Usuario = new ArrayList();</span>
+        /*for (int i=0; i&lt; Lista.size(); i++)
+         g= Grupo Lista[i];
+         Usuario.add(f);
+       
+         */
+<span class="nc" id="L172">        return Usuario;</span>
+    }
+
+    /**
+     * *
+     * Este metodo registra en el sistema el usuario que se este usando en caso
+     * de que el usuario indique que quiere registrarse.
+     */
+    public void registrarusuario() {
+<span class="nc" id="L181">        char z = 'z';</span>
+<span class="nc" id="L182">        Scanner in = new Scanner(System.in);</span>
+<span class="nc" id="L183">        System.out.println(&quot;Quiere registrarse s para si n para no&quot;);</span>
+<span class="nc" id="L184">        z = in.next().charAt(0);</span>
+<span class="nc bnc" id="L185" title="All 4 branches missed.">        if (z == 's' || z == 'S') {</span>
+
+<span class="nc" id="L187">            this.setRegistrado(true);</span>
+<span class="nc bnc" id="L188" title="All 4 branches missed.">        } else if (z == 's' || z == 'S') {</span>
+<span class="nc" id="L189">            System.out.println(&quot;No se ha registrado&quot;);</span>
+
+        }
+
+<span class="nc" id="L193">    }</span>
+
+    /**
+     * *
+     * Este metodo 
+     *
+     * @return
+     */
+    public Bono comprarbono() {
+<span class="nc" id="L202">        Bono b = new Bono();</span>
+        int a;
+<span class="nc" id="L204">        Scanner in = new Scanner(System.in);</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">        if (this.isRegistrado() == true) {</span>
+
+<span class="nc" id="L207">            System.out.println(&quot;Pulse 1 para comprar bono&quot;);</span>
+<span class="nc" id="L208">            System.out.println(&quot;Pulse 2 para salir &quot;);</span>
+<span class="nc" id="L209">            a = in.nextInt();</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            switch (a) {</span>
+                case 1:
+<span class="nc" id="L212">                    b = Bono.nuevoBonoUsuario();</span>
+<span class="nc" id="L213">                    Beneficio beneficio = new Beneficio();</span>
+<span class="nc" id="L214">                    beneficio.setBono(b);</span>
+
+<span class="nc" id="L216">                    b.setUsuario(this);</span>
+                case 2:
+                    break;
+
+            }
+
+        }
+<span class="nc" id="L223">        return b;</span>
+    }
+ /**
+     * *
+     * Función que exporta un coste a un fichero de texto
+     *
+     * @param ruta String con la ruta del fichero
+     * @return true si se exportó con éxito; false en caso contrario
+     * @exception IOException si hubo problema al exportar
+     */
+    public boolean exportarAFichero(String ruta) throws IOException {
+        FileWriter flujoLectura;
+<span class="nc" id="L235">        BufferedWriter flujoBuffer = null;</span>
+        try {
+
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L239">            flujoLectura = new FileWriter(ruta);</span>
+<span class="nc" id="L240">            flujoBuffer = new BufferedWriter(flujoLectura);</span>
+<span class="nc" id="L241">            flujoBuffer.write(this.data());</span>
+<span class="nc" id="L242">            flujoBuffer.flush();</span>
+
+<span class="nc" id="L244">        } catch (IOException e) {</span>
+<span class="nc" id="L245">            System.out.println(&quot;Error E/S: &quot; + e);</span>
+<span class="nc" id="L246">            return false;</span>
+<span class="nc" id="L247">        }</span>
+<span class="nc" id="L248">        return true;</span>
+    }
+          /***
+     * Exporta al fichero en forma de string binario un objeto mediante el metodo data
+     * @param ruta String con la ruta del fichero
+     * @throws IOException 
+     */
+      public void exportarABinario(String ruta) throws IOException{
+     //Copiado de vindios.
+     //Copiado de vindios.
+      FileOutputStream flujoLectura;
+      ObjectOutputStream Oos;
+       try{
+           
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L263">            flujoLectura=new FileOutputStream(ruta, true);</span>
+            //Escribimos en el fichero un String y un caracter 97 (a)
+<span class="nc" id="L265">            Oos = new ObjectOutputStream(flujoLectura);</span>
+<span class="nc" id="L266">            Oos.writeObject(this);</span>
+           
+<span class="nc" id="L268">            Oos.flush();</span>
+                //Abro el stream, el fichero debe existir
+
+            //Leemos el fichero y lo mostramos por pantalla
+<span class="nc" id="L272">        } catch (IOException e) {</span>
+<span class="nc" id="L273">            System.out.println(&quot;Error E/S: &quot; + e);</span>
+<span class="nc" id="L274">        }</span>
+
+//String[]Cadenas=String split (&quot;\\|&quot;)
+<span class="nc" id="L277">    }</span>
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L281">        return &quot;Usuario{&quot; + &quot;identificador=&quot; + identificador + &quot;, nombre=&quot; + nombre + &quot;, telefono=&quot; + telefono + &quot;, NIF=&quot; + NIF + &quot;, email=&quot; + email + '}';</span>
+    }
+
+    public String data() {
+<span class="nc" id="L285">        return &quot;&quot; + getIdentificador() + &quot;|&quot; + getNombre() + &quot;|&quot; + getTelefono() + &quot;|&quot; + getNIF() + &quot;|&quot; + getEmail();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

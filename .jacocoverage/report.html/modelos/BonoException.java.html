@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>BonoException.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">BonoException.java</span></div><h1>BonoException.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package modelos;
+
+/**
+ *
+ * @author DAW105
+ */
+public class BonoException extends Exception {
+
+    public  BonoException (String msj) {
+<span class="nc" id="L15">            super(msj);</span>
+<span class="nc" id="L16">    }</span>
+    public static boolean validarCategoria(char categoria) throws BonoException{
+        
+<span class="nc bnc" id="L19" title="All 4 branches missed.">                     if (categoria != 'C' &amp;&amp; categoria != 'P') {</span>
+<span class="nc" id="L20">            throw new BonoException(&quot;El tipo no es valido. C o P validos&quot;);</span>
+        }
+<span class="nc" id="L22">                     return true;</span>
+   }
+    
+       public static boolean validarMes(int mes) throws BonoException{
+        
+<span class="nc bnc" id="L27" title="All 4 branches missed.">              if (mes &lt; 1 || mes &gt; 12) {</span>
+<span class="nc" id="L28">             throw new BonoException(&quot;El mes no es valido.De uno a doce &quot;);</span>
+        }
+<span class="nc" id="L30">                     return true;</span>
+   }
+          public static boolean validarAnnio(int annio) throws BonoException{
+        
+<span class="nc bnc" id="L34" title="All 4 branches missed.">             if (annio &lt; 1980 || annio &gt; 2021) {</span>
+<span class="nc" id="L35">            throw new BonoException(&quot;El año no es valido.De 1980 a 2021 &quot;);</span>
+        }
+<span class="nc" id="L37">                     return true;</span>
+   }
+//    public static int invalido(char a) throws tipoinvalido {
+//        if (a != 'c' &amp;&amp; a != 'p') {
+//            throw new tipoinvalido();
+//        }
+//
+//        return a;
+//    }
+//
+//    public static class Malmes extends Exception {
+//
+//        Malmes() {
+//            super(&quot;Solo hay 12 meses&quot;);
+//        }
+//    }
+//
+//    public static int malm(int a) throws Malmes {
+//        if (a &lt; 1 || a &gt; 12) {
+//            throw new Malmes();
+//        }
+//        return a;
+//    }
+//
+//    public static class Malannio extends Exception {
+//
+//        Malannio() {
+//            super(&quot;Es un año invalido del 0 al actual&quot;);
+//        }
+//    }
+//
+//    public static int mala(int a) throws Malannio {
+//        if (a &lt; 0 || a &gt; 2020) {
+//            throw new Malannio();
+//        }
+//        return a;
+//    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

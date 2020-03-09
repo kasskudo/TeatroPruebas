@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Bono.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">Bono.java</span></div><h1>Bono.java</h1><pre class="source lang-java linenums">package modelos;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
+import modelos.BonoException;
+import static modelos.BonoException.validarAnnio;
+import static modelos.BonoException.validarCategoria;
+import static modelos.BonoException.validarMes;
+import java.io.Serializable;
+
+/**
+ *
+ * @author Mario
+ * @version 1.1
+ */
+public class Bono implements Serializable {
+
+    protected long id;/*Modela id. Valor positivo*/
+    private long idUsuario;
+    char tipo;/*c para completo p para parcial*/
+    int mes;/*del uno al doce*/
+    int annio;/*del 0 al annio actual*/
+
+    private Usuario usuario;
+    /***
+     * 
+     */
+<span class="nc" id="L33">    public Bono() {</span>
+<span class="nc" id="L34">    }</span>
+/***
+ * 
+ * @param id
+ * @param idUsuario
+ * @param tipo
+ * @param mes
+ * @param annio
+ * @param usuario
+ * @throws BonoException 
+ */
+<span class="nc" id="L45">    public Bono(long id, long idUsuario, char tipo, int mes, int annio, Usuario usuario) throws BonoException {</span>
+
+<span class="nc" id="L47">        this.id = id;</span>
+<span class="nc" id="L48">        this.idUsuario = idUsuario;</span>
+
+<span class="nc bnc" id="L50" title="All 4 branches missed.">         if (tipo != 'C' &amp;&amp; tipo != 'P') {</span>
+<span class="nc" id="L51">            throw new BonoException(&quot;El tipo no es valido. C o P validos&quot;);</span>
+<span class="nc" id="L52">        }this.tipo = tipo;</span>
+<span class="nc" id="L53">        this.mes = mes;</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">         if (mes &lt;  1 || mes &gt;12) {</span>
+<span class="nc" id="L55">            throw new BonoException(&quot;El mes no es valido.De uno a doce &quot;);</span>
+        }
+<span class="nc" id="L57">        this.annio = annio;</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">        if (annio &lt; 1980 || annio &gt; 2021) {</span>
+<span class="nc" id="L59">            throw new BonoException(&quot;El año no es valido.De 1980 a 2021 &quot;);</span>
+        }
+<span class="nc" id="L61">        this.usuario = usuario;</span>
+<span class="nc" id="L62">    }</span>
+/***
+ * 
+ * @param b
+ * @throws BonoException 
+ */
+<span class="nc" id="L68">    public Bono(Bono b) throws BonoException {</span>
+
+<span class="nc" id="L70">        this.id = b.getId();</span>
+<span class="nc" id="L71">        this.id = b.getIdUsuario();</span>
+<span class="nc" id="L72">        this.mes = b.getMes();</span>
+<span class="nc bnc" id="L73" title="All 4 branches missed.">        if (mes &lt; 1 || mes &gt;12) {</span>
+<span class="nc" id="L74">            throw new BonoException(&quot;El mes no es valido.De uno a doce &quot;);</span>
+        }
+<span class="nc" id="L76">        this.tipo = b.getTipo();</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (tipo != 'C' &amp;&amp; tipo != 'P') {</span>
+<span class="nc" id="L78">            throw new BonoException(&quot;El tipo no es valido. C o P validos&quot;);</span>
+        }
+<span class="nc" id="L80">        this.annio = b.getAño();</span>
+<span class="nc bnc" id="L81" title="All 4 branches missed.">         if (annio &lt; 1980 || annio &gt; 2021) {</span>
+<span class="nc" id="L82">            throw new BonoException(&quot;El año no es valido.De 1980 a 2021 &quot;);</span>
+        }
+<span class="nc" id="L84">        this.usuario = b.getUsuario();</span>
+<span class="nc" id="L85">    }</span>
+
+    public int getAño() {
+<span class="nc" id="L88">        return annio;</span>
+    }
+
+    public void setAño(int año) throws BonoException {
+<span class="nc" id="L92">        this.annio = año;</span>
+<span class="nc bnc" id="L93" title="All 4 branches missed.">        if (annio &lt; 1980 || annio &gt; 2021) {</span>
+<span class="nc" id="L94">            throw new BonoException(&quot;El año no es valido.De 1980 a 2021 &quot;);</span>
+        }
+<span class="nc" id="L96">    }</span>
+
+    public long getId() {
+<span class="nc" id="L99">        return id;</span>
+    }
+
+    public long getIdUsuario() {
+<span class="nc" id="L103">        return idUsuario;</span>
+    }
+
+    public void setIdUsuario(long idUsuario) {
+<span class="nc" id="L107">        this.idUsuario = idUsuario;</span>
+<span class="nc" id="L108">    }</span>
+
+    public int getAnnio() {
+<span class="nc" id="L111">        return annio;</span>
+    }
+
+    public void setAnnio(int annio) {
+<span class="nc" id="L115">        this.annio = annio;</span>
+<span class="nc" id="L116">    }</span>
+
+    public void setId(long id) {
+<span class="nc" id="L119">        this.id = id;</span>
+<span class="nc" id="L120">    }</span>
+
+    public char getTipo() {
+<span class="nc" id="L123">        return tipo;</span>
+    }
+
+    public void setTipo(char tipo) throws BonoException {
+
+<span class="nc" id="L128">        this.tipo = tipo;</span>
+<span class="nc bnc" id="L129" title="All 4 branches missed.">        if (tipo != 'C' &amp;&amp; tipo != 'P') {</span>
+<span class="nc" id="L130">            throw new BonoException(&quot;El tipo no es valido. C o P validos&quot;);</span>
+        }
+<span class="nc" id="L132">    }</span>
+
+    public int getMes() {
+<span class="nc" id="L135">        return mes;</span>
+    }
+
+    public void setMes(int mes) throws BonoException {
+
+<span class="nc" id="L140">        this.mes = mes;</span>
+<span class="nc bnc" id="L141" title="All 4 branches missed.">       if (mes &lt; 1 || mes &gt;12) {</span>
+<span class="nc" id="L142">            throw new BonoException(&quot;El mes no es valido.De uno a doce &quot;);</span>
+        }
+<span class="nc" id="L144">    }</span>
+
+    public Usuario getUsuario() {
+<span class="nc" id="L147">        return usuario;</span>
+    }
+
+    public void setUsuario(Usuario usuario) {
+<span class="nc" id="L151">        this.usuario = usuario;</span>
+<span class="nc" id="L152">    }</span>
+/***
+ * Crea un objeto de tipo bono y le pide al usuario que asigne valores
+ * @return devuelve un objeto tipo bono
+ * @throws BonoException 
+ */
+    public static Bono nuevoBono() throws BonoException {
+<span class="nc" id="L159">        char s = 's';</span>
+<span class="nc" id="L160">        char z = 'z';</span>
+<span class="nc" id="L161">        Bono bono = new Bono();</span>
+        char categoria;
+        int mes;
+        int annio;
+<span class="nc" id="L165">        Usuario usuario = new Usuario();</span>
+        Scanner in;
+<span class="nc" id="L167">        in = new Scanner(System.in);</span>
+        do {
+<span class="nc" id="L169">            System.out.println(&quot;Introduzca el tipo de bono puede ser c o p&quot;);</span>
+<span class="nc" id="L170">            categoria = in.next().charAt(0);</span>
+            
+<span class="nc" id="L172">                bono.setTipo(categoria);</span>
+<span class="nc bnc" id="L173" title="All 4 branches missed.">                 if (categoria != 'C' &amp;&amp; categoria != 'P') {</span>
+<span class="nc" id="L174">            throw new BonoException(&quot;El tipo no es valido. C o P validos&quot;);</span>
+        }
+
+<span class="nc" id="L177">            System.out.println(&quot;Introduzca el mes del 1 al 12&quot;);</span>
+<span class="nc" id="L178">            mes = in.nextInt();</span>
+       
+<span class="nc" id="L180">                bono.setMes(mes);</span>
+<span class="nc bnc" id="L181" title="All 4 branches missed.">            if (mes &lt; 1 || mes &gt; 12) {</span>
+<span class="nc" id="L182">             throw new BonoException(&quot;El mes no es valido.De uno a doce &quot;);</span>
+        }
+
+<span class="nc" id="L185">            System.out.println(&quot;Introduzca el año del 1980 a 2021&quot;);</span>
+<span class="nc" id="L186">            annio = in.nextInt();</span>
+            
+<span class="nc" id="L188">                bono.setAño(annio);</span>
+<span class="nc bnc" id="L189" title="All 4 branches missed.">             if (annio &lt; 1980 || annio &gt; 2021) {</span>
+<span class="nc" id="L190">            throw new BonoException(&quot;El año no es valido.De 1980 a 2021 &quot;);</span>
+        }
+<span class="nc" id="L192">            System.out.println(&quot;Quiere asignar el usuario propietario del bono&quot;);</span>
+<span class="nc" id="L193">            z = in.next().charAt(0);</span>
+<span class="nc bnc" id="L194" title="All 4 branches missed.">            if (z == 's' || z == 'S') {</span>
+
+<span class="nc" id="L196">                usuario = Usuario.nuevoUsuario();</span>
+
+            } else {
+<span class="nc" id="L199">                System.out.println(&quot;No a asignado un usuario a este bono&quot;);</span>
+            }
+<span class="nc" id="L201">            bono.setUsuario(usuario);</span>
+
+<span class="nc" id="L203">            System.out.println(&quot;¿Los datos son correctos?&quot; + bono);</span>
+
+<span class="nc" id="L205">            System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L206">            s = in.next().charAt(0);</span>
+<span class="nc bnc" id="L207" title="All 4 branches missed.">        } while (s != 's' &amp;&amp; s != 'S');</span>
+
+<span class="nc" id="L209">        return bono;</span>
+    }
+/***
+ * crea un objeto de tipo bono y le pide al usuario que asigne valores
+ * @return un objeto de tipo bono
+ */
+    public static Bono nuevoBonoUsuario() {
+<span class="nc" id="L216">        char s = 's';</span>
+<span class="nc" id="L217">        char z = 'z';</span>
+<span class="nc" id="L218">        Bono bono = new Bono();</span>
+        char categoria;
+        int mes;
+        int annio;
+<span class="nc" id="L222">        Usuario usuario = new Usuario();</span>
+        Scanner in;
+<span class="nc" id="L224">        in = new Scanner(System.in);</span>
+        do {
+           
+<span class="nc" id="L227">            System.out.println(&quot;Introduzca el tipo de bono puede ser c o p&quot;);</span>
+<span class="nc" id="L228">            categoria = in.next().charAt(0);</span>
+            try {
+<span class="nc bnc" id="L230" title="All 2 branches missed.">                if (validarCategoria(categoria)){</span>
+<span class="nc" id="L231">                    bono.setTipo(categoria);</span>
+                }
+<span class="nc" id="L233">            } catch (BonoException ex) {</span>
+<span class="nc" id="L234">               System.out.println(&quot;Los valores de la categoria son incorrectos&quot;);</span>
+<span class="nc" id="L235">            }</span>
+
+<span class="nc" id="L237">            System.out.println(&quot;Introduzca el mes en que es valido el bono&quot;);</span>
+<span class="nc" id="L238">            mes = in.nextInt();</span>
+       try {
+<span class="nc bnc" id="L240" title="All 2 branches missed.">                if (validarMes(mes)){</span>
+<span class="nc" id="L241">                    bono.setMes(mes);</span>
+                }
+<span class="nc" id="L243">            } catch (BonoException ex) {</span>
+<span class="nc" id="L244">               System.out.println(&quot;Los valores del mes son incorrectos&quot;);</span>
+<span class="nc" id="L245">            }</span>
+
+                
+            
+
+<span class="nc" id="L250">            System.out.println(&quot;Introduzca el año en que es valido el bono&quot;);</span>
+<span class="nc" id="L251">            annio = in.nextInt();</span>
+            
+                
+                 try {
+<span class="nc bnc" id="L255" title="All 2 branches missed.">                if (validarAnnio(annio)){</span>
+<span class="nc" id="L256">                    bono.setAño(annio);</span>
+                }
+<span class="nc" id="L258">            } catch (BonoException ex) {</span>
+<span class="nc" id="L259">               System.out.println(&quot;Los valores del año son incorrectos&quot;);</span>
+<span class="nc" id="L260">            }</span>
+            
+<span class="nc" id="L262">            System.out.println(&quot;¿Los datos son correctos?&quot; + bono);</span>
+ 
+<span class="nc" id="L264">            System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L265">            s = in.next().charAt(0);</span>
+<span class="nc bnc" id="L266" title="All 4 branches missed.">        } while (s != 's' &amp;&amp; s != 'S');</span>
+
+<span class="nc" id="L268">        return bono;</span>
+    }
+    
+    public Bono getBonoById(long Id) {
+<span class="nc" id="L272">        Bono b = null;</span>
+        /* for(int i=0; i&lt; Lista.size (); i++){
+     s=(Bono) Lista[i];
+     
+        if( s.getId()== Id){
+        }
+        
+     } 
+         */
+<span class="nc" id="L281">        return b;</span>
+    }
+
+    public ArrayList&lt;Bono&gt; getAllBonos() {
+<span class="nc" id="L285">        ArrayList&lt;Bono&gt; Bonos = new ArrayList();</span>
+        /*for (int i=0; i&lt; Lista.size(); i++)
+           g= Grupo Lista[i];
+       Bono.add(f);
+       
+         */
+<span class="nc" id="L291">        return Bonos;</span>
+    }
+  /**
+     * *
+     * Función que exporta un coste a un fichero de texto
+     *
+     * @param ruta String con la ruta del fichero
+     * @return true si se exportó con éxito; false en caso contrario
+     * @exception IOException si hubo problema al exportar
+     */
+    public boolean exportarAFichero(String ruta) throws IOException {
+        FileWriter flujoLectura;
+<span class="nc" id="L303">        BufferedWriter flujoBuffer = null;</span>
+        try {
+
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L307">            flujoLectura = new FileWriter(ruta);</span>
+<span class="nc" id="L308">            flujoBuffer = new BufferedWriter(flujoLectura);</span>
+<span class="nc" id="L309">            flujoBuffer.write(this.data());</span>
+<span class="nc" id="L310">            flujoBuffer.flush();</span>
+
+<span class="nc" id="L312">        } catch (IOException e) {</span>
+<span class="nc" id="L313">            System.out.println(&quot;Error E/S: &quot; + e);</span>
+<span class="nc" id="L314">            return false;</span>
+<span class="nc" id="L315">        }</span>
+<span class="nc" id="L316">        return true;</span>
+    }
+
+       /***
+     * Exporta al fichero en forma de string binario un objeto mediante el metodo data
+     * @param ruta String con la ruta del fichero
+     * @throws IOException 
+     */
+      public void exportarABinario(String ruta) throws IOException{
+     //Copiado de vindios.
+     //Copiado de vindios.
+      FileOutputStream flujoLectura;
+      ObjectOutputStream Oos;
+       try{
+           
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L332">            flujoLectura=new FileOutputStream(ruta, true);</span>
+            //Escribimos en el fichero un String y un caracter 97 (a)
+<span class="nc" id="L334">            Oos = new ObjectOutputStream(flujoLectura);</span>
+<span class="nc" id="L335">            Oos.writeObject(this);</span>
+           
+<span class="nc" id="L337">            Oos.flush();</span>
+                //Abro el stream, el fichero debe existir
+            
+            //Leemos el fichero y lo mostramos por pantalla
+            
+          
+<span class="nc" id="L343">        }catch(IOException e){</span>
+<span class="nc" id="L344">            System.out.println(&quot;Error E/S: &quot;+e);</span>
+<span class="nc" id="L345">        }</span>
+    
+
+    
+//String[]Cadenas=String split (&quot;\\|&quot;)
+    
+   
+<span class="nc" id="L352">    }</span>
+    @Override
+    public String toString() {
+<span class="nc" id="L355">        return &quot;Bono{&quot; + &quot;id=&quot; + id + &quot;, idUsuario=&quot; + idUsuario + &quot;, tipo=&quot; + tipo + &quot;, mes=&quot; + mes + &quot;, annio=&quot; + annio + &quot;, usuario=&quot; + usuario + '}';</span>
+    }
+
+    public String data() {
+<span class="nc" id="L359">        return &quot;&quot; + getId() + &quot;|&quot; + getIdUsuario() + &quot;|&quot; + getMes() + &quot;|&quot; + getTipo() + &quot;|&quot; + getUsuario();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

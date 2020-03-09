@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Informe.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">Informe.java</span></div><h1>Informe.java</h1><pre class="source lang-java linenums">package modelos;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Mario
+ * @version 1.1
+ */
+public class Informe implements Serializable {
+
+    protected long id;/*Modela id. Valor positivo*/
+    private int mes;/*Modela el mes. Valor positivo*/
+    private int anio;/*Modela el anio. Valor positivo*/
+    private double balance;/*Modela balance. Valor positivo o valor negativo*/
+    private Secretariado secretariado;
+    private long idSecretariado;
+
+<span class="nc" id="L26">    public Informe() {</span>
+
+<span class="nc" id="L28">    }</span>
+    /**
+     * Constructor de argumentos.
+     * @param id
+     * @param mes
+     * @param anio
+     * @param balance
+     * @param secretariado
+     * @param idSecretariado 
+     */
+<span class="nc" id="L38">    public Informe(long id, int mes, int anio, double balance, Secretariado secretariado, long idSecretariado) {</span>
+
+<span class="nc" id="L40">        this.id = id;</span>
+<span class="nc" id="L41">        this.mes = mes;</span>
+<span class="nc" id="L42">        this.anio = anio;</span>
+<span class="nc" id="L43">        this.balance = balance;</span>
+<span class="nc" id="L44">        this.secretariado = secretariado;</span>
+<span class="nc" id="L45">        this.idSecretariado = idSecretariado;</span>
+<span class="nc" id="L46">    }</span>
+    /**
+     * Constructor de copia.
+     * @param i 
+     */
+<span class="nc" id="L51">    public Informe(Informe i) {</span>
+
+<span class="nc" id="L53">        this.id = i.getId();</span>
+<span class="nc" id="L54">        this.mes = i.getMes();</span>
+<span class="nc" id="L55">        this.anio = i.getAnio();</span>
+<span class="nc" id="L56">        this.balance = i.getBalance();</span>
+<span class="nc" id="L57">        this.secretariado = i.getSecretariado();</span>
+<span class="nc" id="L58">        this.idSecretariado = i.getIdSecretariado();</span>
+<span class="nc" id="L59">    }</span>
+
+    /**
+     * Crea un nuevo informe.
+     * @return Devuelve el nuevo informe.
+     */
+    public static Informe nuevoinforme() {
+<span class="nc" id="L66">        char d='a';</span>
+        Scanner in;
+        int mes;
+        int año;
+
+        double c;
+<span class="nc" id="L72">        Informe i = new Informe();</span>
+        Secretariado s ;
+
+<span class="nc" id="L75">        in = new Scanner(System.in);</span>
+        char z;
+        
+        do {
+            do {
+<span class="nc" id="L80">                System.out.println(&quot;Mes de creacion del Informe&quot;);</span>
+
+<span class="nc" id="L82">                mes = in.nextInt();</span>
+
+<span class="nc bnc" id="L84" title="All 4 branches missed.">            } while (mes &lt; 1 || mes &gt; 12);</span>
+<span class="nc" id="L85">            System.out.println(&quot;Año de creacion del Informe&quot;);</span>
+<span class="nc" id="L86">            año = in.nextInt();</span>
+
+<span class="nc" id="L88">            System.out.println(&quot;Introduce el balance en euros&quot;);</span>
+<span class="nc" id="L89">            c = in.nextDouble();</span>
+<span class="nc" id="L90">            System.out.println(&quot;quieres asignar un secretario a esta este informe&quot;);</span>
+<span class="nc" id="L91">            z = in.next().charAt(0);</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">            if (z == 's' || z == 'S') {</span>
+<span class="nc" id="L93">            s = Secretariado.nuevoSecretariado();</span>
+<span class="nc" id="L94">            i.setSecretariado(s);}</span>
+            else {
+<span class="nc" id="L96">                System.out.println(&quot;No has asiganado un secretario a esta este informe&quot;);}</span>
+            
+      
+       
+<span class="nc" id="L100">       System.out.println(&quot;¿Los datos son correctos?&quot;+i);</span>
+      
+<span class="nc" id="L102">      System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L103">      d= in.next().charAt(0);</span>
+      }
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            while (d != 's' &amp;&amp; d != 'S');</span>
+
+<span class="nc" id="L107">            return i;</span>
+
+        }
+
+    
+
+    public Informe getInformeById(long Id) {
+<span class="nc" id="L114">        Informe i = null;</span>
+        /* for(int i=0; i&lt; Lista.size (); i++){
+     s=(Beneficio) Lista[i];
+     
+        if( s.getId()== Id){
+        }
+        
+     } 
+         */
+<span class="nc" id="L123">        return i;</span>
+    }
+
+    public ArrayList&lt;Informe&gt; getAllInformes() {
+<span class="nc" id="L127">        ArrayList&lt;Informe&gt; Informes = new ArrayList();</span>
+        /*for (int i=0; i&lt; Lista.size(); i++)
+           g= Grupo Lista[i];
+       Informe.add(f);
+       
+         */
+<span class="nc" id="L133">        return Informes;</span>
+    }
+
+    
+    public Secretariado getSecretariado() {
+<span class="nc" id="L138">        return secretariado;</span>
+    }
+
+    
+    public void setSecretariado(Secretariado secretariado) {
+<span class="nc" id="L143">        this.secretariado = secretariado;</span>
+<span class="nc" id="L144">    }</span>
+
+    
+    public long getId() {
+<span class="nc" id="L148">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="nc" id="L152">        this.id = id;</span>
+<span class="nc" id="L153">    }</span>
+
+    public int getMes() {
+<span class="nc" id="L156">        return mes;</span>
+    }
+
+    public void setMes(int mes) {
+<span class="nc" id="L160">        this.mes = mes;</span>
+<span class="nc" id="L161">    }</span>
+
+    public int getAnio() {
+<span class="nc" id="L164">        return anio;</span>
+    }
+
+    public void setAnio(int anio) {
+<span class="nc" id="L168">        this.anio = anio;</span>
+<span class="nc" id="L169">    }</span>
+
+    public double getBalance() {
+<span class="nc" id="L172">        return balance;</span>
+    }
+
+    public void setBalance(double balance) {
+<span class="nc" id="L176">        this.balance = balance;</span>
+<span class="nc" id="L177">    }</span>
+
+    public long getIdSecretariado() {
+<span class="nc" id="L180">        return idSecretariado;</span>
+    }
+
+    public void setIdSecretariado(long idSecretariado) {
+<span class="nc" id="L184">        this.idSecretariado = idSecretariado;</span>
+<span class="nc" id="L185">    }</span>
+  /**
+     * *
+     * Función que exporta un coste a un fichero de texto
+     *
+     * @param ruta String con la ruta del fichero
+     * @return true si se exportó con éxito; false en caso contrario
+     * @exception IOException si hubo problema al exportar
+     */
+    public boolean exportarAFichero(String ruta) throws IOException {
+        FileWriter flujoLectura;
+<span class="nc" id="L196">        BufferedWriter flujoBuffer = null;</span>
+        try {
+
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L200">            flujoLectura = new FileWriter(ruta);</span>
+<span class="nc" id="L201">            flujoBuffer = new BufferedWriter(flujoLectura);</span>
+<span class="nc" id="L202">            flujoBuffer.write(this.data());</span>
+<span class="nc" id="L203">            flujoBuffer.flush();</span>
+
+<span class="nc" id="L205">        } catch (IOException e) {</span>
+<span class="nc" id="L206">            System.out.println(&quot;Error E/S: &quot; + e);</span>
+<span class="nc" id="L207">            return false;</span>
+<span class="nc" id="L208">        }</span>
+<span class="nc" id="L209">        return true;</span>
+    }
+    /***
+     * Exporta al fichero en forma de string binario un objeto mediante el metodo data
+     * @param ruta String con la ruta del fichero
+     * @throws IOException 
+     */
+      public void exportarABinario(String ruta) throws IOException{
+     //Copiado de vindios.
+     //Copiado de vindios.
+      FileOutputStream flujoLectura;
+      ObjectOutputStream Oos;
+       try{
+           
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L224">            flujoLectura=new FileOutputStream(ruta, true);</span>
+            //Escribimos en el fichero un String y un caracter 97 (a)
+<span class="nc" id="L226">            Oos = new ObjectOutputStream(flujoLectura);</span>
+<span class="nc" id="L227">            Oos.writeObject(this);</span>
+           
+<span class="nc" id="L229">            Oos.flush();</span>
+                //Abro el stream, el fichero debe existir
+            
+            //Leemos el fichero y lo mostramos por pantalla
+            
+          
+<span class="nc" id="L235">        }catch(IOException e){</span>
+<span class="nc" id="L236">            System.out.println(&quot;Error E/S: &quot;+e);</span>
+<span class="nc" id="L237">        }</span>
+    
+
+    
+//String[]Cadenas=String split (&quot;\\|&quot;)
+    
+   
+<span class="nc" id="L244">    }</span>
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L248">        return &quot;Informe{&quot; + &quot;id=&quot; + id + &quot;, mes=&quot; + mes + &quot;, anio=&quot; + anio + &quot;, balance=&quot; + balance + &quot;, secretariado=&quot; + secretariado + &quot;, idSecretariado=&quot; + idSecretariado + '}';</span>
+    }
+
+  
+    public String data() {
+<span class="nc" id="L253">        return &quot;&quot; + getId() + &quot;|&quot; + getMes() + &quot;|&quot; + getAnio() + &quot;|&quot; + getBalance() + &quot;|&quot; + getSecretariado() + &quot;|&quot; + getIdSecretariado();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

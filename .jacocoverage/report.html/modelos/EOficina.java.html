@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>EOficina.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">EOficina.java</span></div><h1>EOficina.java</h1><pre class="source lang-java linenums">package modelos;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author roter
+ * @version 1.0
+ */
+public class EOficina extends Empleado implements Serializable {
+
+    private int antiguedad;
+
+    /**
+     * Modela antiguedad los empleados de oficina cuantos años llevan trabajando en el
+ teatro y puede tomar valores positivos y no puede ser negativo
+     */
+    public EOficina() {
+<span class="nc" id="L31">        super();</span>
+<span class="nc" id="L32">    }</span>
+/***
+ * 
+ * @param id
+ * @param nombre
+ * @param apellidos
+ * @param nif
+ * @param direccion
+ * @param telefono
+ * @param antiguedad
+ * @param horastrabajadas
+ * @param salarioporhora
+ * @param salariomensual 
+ */
+
+    public EOficina(long id, String nombre, String apellidos, String nif, String direccion, String telefono, int antiguedad, int horastrabajadas, double salarioporhora, double salariomensual) {
+<span class="nc" id="L48">        super(id, nombre, apellidos, nif, direccion, telefono, horastrabajadas, salarioporhora, salariomensual);</span>
+<span class="nc" id="L49">        this.antiguedad = antiguedad;</span>
+
+<span class="nc" id="L51">    }</span>
+/***
+ * 
+ * @param e 
+ */
+    public EOficina(Empleado e) {
+<span class="nc" id="L57">        super(e);</span>
+<span class="nc" id="L58">    }</span>
+/***
+ * 
+ * @param e
+ * @param anios 
+ */
+    public EOficina(Empleado e, int anios) {
+<span class="nc" id="L65">        super(e);</span>
+<span class="nc" id="L66">        this.antiguedad = anios;</span>
+<span class="nc" id="L67">    }</span>
+/***
+ * 
+ * @param o 
+ */
+    public EOficina(EOficina o) {
+<span class="nc" id="L73">        super(o);</span>
+<span class="nc" id="L74">        this.antiguedad = o.getAntiguedad();</span>
+
+<span class="nc" id="L76">    }</span>
+/***
+ * crea un objeto de tipo eoficina y le pide al usuario que meta los datos
+ * @return un objeto de tipo eoficina 
+ */
+    public static EOficina nuevoEOficina() {
+<span class="nc" id="L82">        char d='s';</span>
+        Scanner in;
+        int antiguedad;
+        EOficina oficina ;
+<span class="nc" id="L86">        in = new Scanner(System.in);</span>
+
+        do {
+<span class="nc" id="L89">            oficina = new EOficina(Empleado.nuevoEmpleado());</span>
+            
+<span class="nc" id="L91">            System.out.println(&quot;Mete tus años de antiguedad&quot;);</span>
+<span class="nc" id="L92">            antiguedad = in.nextInt();</span>
+<span class="nc" id="L93">            oficina.setAntiguedad(antiguedad);</span>
+<span class="nc" id="L94">            System.out.println(&quot;¿Los datos son correctos?&quot; + (EOficina) oficina);</span>
+<span class="nc" id="L95">            System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L96">            d = in.next().charAt(0);</span>
+<span class="nc bnc" id="L97" title="All 4 branches missed.">        } while (d != 's' &amp;&amp; d != 'S');</span>
+
+<span class="nc" id="L99">        return oficina;</span>
+
+    }
+
+    public EOficina getEOficinaById(long Id) {
+<span class="nc" id="L104">        EOficina e = null;</span>
+        /* for(int i=0; i&lt; Lista.size (); i++){
+     e=(Empleado) Lista[i];
+     
+        if( e.getId()== Id){
+        }
+        
+     } 
+         */
+<span class="nc" id="L113">        return e;</span>
+    }
+
+    public ArrayList&lt;EOficina&gt; getAllEOficinas() {
+<span class="nc" id="L117">        ArrayList&lt;EOficina&gt; EOficinas = new ArrayList();</span>
+        /*for (int i=0; i&lt; Lista.size(); i++)
+           e= Empleado Lista[i];
+       Empleados.add(f);
+       
+         */
+<span class="nc" id="L123">        return EOficinas;</span>
+    }
+
+    public int getAntiguedad() {
+<span class="nc" id="L127">        return antiguedad;</span>
+    }
+
+    public void setAntiguedad(int antiguedad) {
+<span class="nc" id="L131">        this.antiguedad = antiguedad;</span>
+<span class="nc" id="L132">    }</span>
+  /**
+     * *
+     * Función que exporta un coste a un fichero de texto
+     *
+     * @param ruta String con la ruta del fichero
+     * @return true si se exportó con éxito; false en caso contrario
+     * @exception IOException si hubo problema al exportar
+     */
+    public boolean exportarAFichero(String ruta) throws IOException {
+        FileWriter flujoLectura;
+<span class="nc" id="L143">        BufferedWriter flujoBuffer = null;</span>
+        try {
+
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L147">            flujoLectura = new FileWriter(ruta);</span>
+<span class="nc" id="L148">            flujoBuffer = new BufferedWriter(flujoLectura);</span>
+<span class="nc" id="L149">            flujoBuffer.write(this.data());</span>
+<span class="nc" id="L150">            flujoBuffer.flush();</span>
+
+<span class="nc" id="L152">        } catch (IOException e) {</span>
+<span class="nc" id="L153">            System.out.println(&quot;Error E/S: &quot; + e);</span>
+<span class="nc" id="L154">            return false;</span>
+<span class="nc" id="L155">        }</span>
+<span class="nc" id="L156">        return true;</span>
+    }
+
+         /***
+     * Exporta al fichero en forma de string binario un objeto mediante el metodo data
+     * @param ruta String con la ruta del fichero
+     * @throws IOException 
+     */
+      public void exportarABinario(String ruta) throws IOException{
+     //Copiado de vindios.
+     //Copiado de vindios.
+      FileOutputStream flujoLectura;
+      ObjectOutputStream Oos;
+       try{
+           
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L172">            flujoLectura=new FileOutputStream(ruta, true);</span>
+            //Escribimos en el fichero un String y un caracter 97 (a)
+<span class="nc" id="L174">            Oos = new ObjectOutputStream(flujoLectura);</span>
+<span class="nc" id="L175">            Oos.writeObject(this);</span>
+           
+<span class="nc" id="L177">            Oos.flush();</span>
+                //Abro el stream, el fichero debe existir
+            
+            //Leemos el fichero y lo mostramos por pantalla
+            
+          
+<span class="nc" id="L183">        }catch(IOException e){</span>
+<span class="nc" id="L184">            System.out.println(&quot;Error E/S: &quot;+e);</span>
+<span class="nc" id="L185">        }</span>
+    
+
+    
+//String[]Cadenas=String split (&quot;\\|&quot;)
+    
+   
+<span class="nc" id="L192">    }</span>
+    
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L197">        return super.toString() + &quot;EOficina{&quot; + &quot;antiguedad=&quot; + antiguedad + '}';</span>
+    }
+
+    
+    public String data() {
+<span class="nc" id="L202">        return super.data() + &quot;&quot; + getAntiguedad();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

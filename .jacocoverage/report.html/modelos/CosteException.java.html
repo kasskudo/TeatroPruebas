@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CosteException.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">CosteException.java</span></div><h1>CosteException.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package modelos;
+
+/**
+ *
+ * @author Andres
+ */
+public class CosteException extends Exception {
+
+    public CosteException(String msj) {
+<span class="nc" id="L15">        super(msj);</span>
+<span class="nc" id="L16">    }</span>
+
+    public static boolean validarImporte(String importe) throws CosteException {
+        try {
+<span class="nc" id="L20">            double imp = Double.valueOf(importe);</span>
+<span class="nc" id="L21">            return validarImporte(imp);</span>
+<span class="nc" id="L22">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L23">            throw new CosteException(&quot;Se ha producido una CosteException, introduzca un valor numerico para el importe.&quot;);</span>
+        }
+    }
+
+    public static boolean validarImporte(double importe) throws CosteException {
+<span class="nc bnc" id="L28" title="All 4 branches missed.">        if (importe &gt; 3000 || importe &lt; 0) {</span>
+<span class="nc" id="L29">            throw new CosteException(&quot;Se ha producido una CosteException, introduzca un valor mayor de 0 y menor de 3000 para el importe.&quot;);</span>
+        }
+<span class="nc" id="L31">        return true;</span>
+    }
+
+    public static boolean validarReporte(String reporte) throws CosteException {
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (reporte.length() &lt; 4) {</span>
+<span class="nc" id="L36">            throw new CosteException(&quot;Se ha producido una CosteException, introduzca mas de 4 caracteres para el reporte.&quot;);</span>
+        }
+
+<span class="nc" id="L39">        return true;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

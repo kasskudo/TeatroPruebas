@@ -18,7 +18,12 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-BeneficioTest.class, BonoTest.class, CosteTest.class, InformeTest.class, NominaException.class, NominaTest.class, UsuarioTest.class})
+    
+AcomodadorTest.class, BeneficioTest.class, BonoTest.class,CosteException.class,CosteTest.class,
+    ETeatroTest.class, EmpleadoTest.class, FranquiciaTest.class, InformeTest.class, NominaExceptionTest.class,
+    NominaTest.class, TaquilleroTest.class, UsuarioTest.class
+
+})
 public class TesTsuite1 {
 
     @BeforeClass

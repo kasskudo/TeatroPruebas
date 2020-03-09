@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Limpiador.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Teatro&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">modelos</a> &gt; <span class="el_source">Limpiador.java</span></div><h1>Limpiador.java</h1><pre class="source lang-java linenums">package modelos;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author roter
+ * @version 1.0
+ */
+public class Limpiador extends ETeatro implements Serializable {
+
+    public Limpiador() {
+<span class="nc" id="L26">        super();</span>
+<span class="nc" id="L27">    }</span>
+    /**
+     * Constructor por argumentos
+     * @param id
+     * @param nombre
+     * @param apellidos
+     * @param nif
+     * @param direccion
+     * @param telefono
+     * @param horastrabajadas
+     * @param salarioporhora
+     * @param salariomensual
+     * @param idGrupo
+     * @param categoria
+     * @param grupo
+     * @param coste 
+     */
+    public Limpiador(long id, String nombre, String apellidos, String nif, String direccion, String telefono, int horastrabajadas, double salarioporhora, double salariomensual, long idGrupo, char categoria, Grupo grupo, Coste coste) {
+<span class="nc" id="L45">        super(id, nombre, apellidos, nif, direccion, telefono, horastrabajadas, salarioporhora, salariomensual, idGrupo, categoria, grupo);</span>
+<span class="nc" id="L46">    }</span>
+    /**
+     * Constructor de copia
+     * @param l 
+     */
+    public Limpiador(Limpiador l) {
+<span class="nc" id="L52">        super(l);</span>
+<span class="nc" id="L53">    }</span>
+    /**
+     * Constructor de copia
+     * @param e 
+     */
+    public Limpiador(ETeatro e) {
+<span class="nc" id="L59">        super(e);</span>
+<span class="nc" id="L60">    }</span>
+
+    /***
+     * Este metodo crea un nuevo Empleado Limpiador
+     * @return Devuelve el nuevo Limpiador.
+     */
+    
+    public static Limpiador nuevoLimpiador() {
+<span class="nc" id="L68">        char s = 'a';</span>
+<span class="nc" id="L69">        char z = 's';</span>
+        Scanner in;
+<span class="nc" id="L71">        in = new Scanner(System.in);</span>
+
+        Limpiador limpieza;
+        do {
+<span class="nc" id="L75">            limpieza = new Limpiador(ETeatro.nuevoETeatro());</span>
+
+<span class="nc" id="L77">            System.out.println(&quot;¿Los datos son correctos?&quot; + limpieza);</span>
+
+<span class="nc" id="L79">            System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L80">            s = in.next().charAt(0);</span>
+<span class="nc bnc" id="L81" title="All 4 branches missed.">        } while (s != 's' &amp;&amp; s != 'S');</span>
+<span class="nc" id="L82">        return limpieza;</span>
+
+    }
+    /**
+     * Esta funcion llama al metodo nuevo coste para añadir un coste cada vez que se ejecute.
+     * @return Devuelve los datos del coste creado
+     * @throws ParseException  Puede lanzar ParseException
+     */ 
+    
+    public Coste nuevoCoste() throws ParseException {
+<span class="nc" id="L92">        char d = 'h';</span>
+<span class="nc" id="L93">        char z = 'l';</span>
+<span class="nc" id="L94">        Coste coste = new Coste();</span>
+        Scanner in;
+        double importe;
+        String reporte;
+<span class="nc" id="L98">        in = new Scanner(System.in);</span>
+<span class="nc" id="L99">        Acomodador acomodador = null;</span>
+<span class="nc" id="L100">        Limpiador limpieza = null;</span>
+        do {
+
+                 //System.out.println(&quot;Introduzca la fecha de creacion&quot;);
+            //Date fe=Cajadeherramientas.readDate(in,&quot;DD-MM-YYYY&quot;);
+            //c.setFecha(fe);
+<span class="nc" id="L106">            coste.setLimpiador(this);</span>
+
+            /*  System.out.println(&quot;Introduzca la fecha con formato dd-mm-yyyy&quot;);
+                 
+             String fecha = in.nextLine();
+             SimpleDateFormat df = new SimpleDateFormat(&quot;dd-MM-yyyy&quot;);
+             String date = fecha;
+             Date testDate = df.parse(date);
+             long lnMilisegundos = testDate.getTime();
+                 
+             java.sql.Date fe = new java.sql.Date(lnMilisegundos);;
+             System.out.println(&quot;Ahora hemos creado un objeto date con la fecha indicada, &quot;+fe);
+                 
+             if (!df.format(testDate).equals(date)){
+             System.out.println(&quot;invalid date!!&quot;);
+             } else {
+             System.out.println(&quot;valid date&quot;);
+             coste.setFecha(fe);
+             }
+             */
+<span class="nc" id="L126">            System.out.println(&quot;Introduzca el importe en euros&quot;);</span>
+<span class="nc" id="L127">            importe = in.nextDouble();</span>
+<span class="nc" id="L128">            coste.setImporte(importe);</span>
+<span class="nc" id="L129">            System.out.println(&quot;Introduzca el Reporte&quot;);</span>
+<span class="nc" id="L130">            reporte = in.nextLine();</span>
+<span class="nc" id="L131">            coste.setReporte(reporte);</span>
+
+<span class="nc" id="L133">            System.out.println(&quot;¿Los datos son correctos?&quot; + coste);</span>
+
+<span class="nc" id="L135">            System.out.println(&quot;Si lo son pulse s para continuar de lo contrario pulse n&quot;);</span>
+<span class="nc" id="L136">            d = in.next().charAt(0);</span>
+
+<span class="nc bnc" id="L138" title="All 4 branches missed.">        } while (d != 's' &amp;&amp; d != 'S');</span>
+<span class="nc" id="L139">        return coste;</span>
+    }
+
+    public Limpiador getLimpiezasById(long id) {
+
+<span class="nc" id="L144">        Limpiador l = null;</span>
+        /* for(int i=0; i&lt; Lista.size (); i++){
+         c=(Limpiador) Lista[i];
+     
+         if( f.getId()== Id){
+         }
+        
+         } 
+         */
+<span class="nc" id="L153">        return l;</span>
+    }
+
+    public ArrayList&lt;Limpiador&gt; getAllLimpiezas() {
+<span class="nc" id="L157">        ArrayList&lt;Limpiador&gt; Limpiezas = new ArrayList();</span>
+        /*for (int i=0; i&lt; Lista.size(); i++)
+         c= Limpiador Lista[i];
+         Limpiezas.add(f);
+       
+         */
+<span class="nc" id="L163">        return Limpiezas;</span>
+    }
+  /**
+     * *
+     * Función que exporta un coste a un fichero de texto
+     *
+     * @param ruta String con la ruta del fichero
+     * @return true si se exportó con éxito; false en caso contrario
+     * @exception IOException si hubo problema al exportar
+     */
+    public boolean exportarAFichero(String ruta) throws IOException {
+        FileWriter flujoLectura;
+<span class="nc" id="L175">        BufferedWriter flujoBuffer = null;</span>
+        try {
+
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L179">            flujoLectura = new FileWriter(ruta);</span>
+<span class="nc" id="L180">            flujoBuffer = new BufferedWriter(flujoLectura);</span>
+<span class="nc" id="L181">            flujoBuffer.write(this.data());</span>
+<span class="nc" id="L182">            flujoBuffer.flush();</span>
+
+<span class="nc" id="L184">        } catch (IOException e) {</span>
+<span class="nc" id="L185">            System.out.println(&quot;Error E/S: &quot; + e);</span>
+<span class="nc" id="L186">            return false;</span>
+<span class="nc" id="L187">        }</span>
+<span class="nc" id="L188">        return true;</span>
+    }
+      public void exportarABinario(String ruta) throws IOException{
+     //Copiado de vindios.
+     //Copiado de vindios.
+      FileOutputStream flujoLectura;
+      ObjectOutputStream Oos;
+       try{
+           
+            //Abro stream, crea el fichero si no existe
+<span class="nc" id="L198">            flujoLectura=new FileOutputStream(ruta, true);</span>
+            //Escribimos en el fichero un String y un caracter 97 (a)
+<span class="nc" id="L200">            Oos = new ObjectOutputStream(flujoLectura);</span>
+<span class="nc" id="L201">            Oos.writeObject(this);</span>
+           
+<span class="nc" id="L203">            Oos.flush();</span>
+                //Abro el stream, el fichero debe existir
+            
+            //Leemos el fichero y lo mostramos por pantalla
+            
+          
+<span class="nc" id="L209">        }catch(IOException e){</span>
+<span class="nc" id="L210">            System.out.println(&quot;Error E/S: &quot;+e);</span>
+<span class="nc" id="L211">        }</span>
+    
+
+    
+//String[]Cadenas=String split (&quot;\\|&quot;)
+    
+   
+<span class="nc" id="L218">    }</span>
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L222">        return super.toString() + &quot;Limpieza{&quot; + '}';</span>
+    }
+
+    public String data() {
+<span class="nc" id="L226">        return super.data();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
