@@ -17,7 +17,8 @@ import org.junit.runners.Suite;
  * @author DAW101
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({})
+@Suite.SuiteClasses({
+BeneficioTest.class, BonoTest.class, CosteTest.class, InformeTest.class, NominaException.class, NominaTest.class, UsuarioTest.class})
 public class TesTsuite1 {
 
     @BeforeClass
