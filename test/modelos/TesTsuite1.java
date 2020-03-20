@@ -17,13 +17,14 @@ import org.junit.runners.Suite;
  * @author DAW101
  */
 @RunWith(Suite.class)
+/*
 @Suite.SuiteClasses({
     
 AcomodadorTest.class, BeneficioTest.class, BonoTest.class,CosteException.class,CosteTest.class,
     ETeatroTest.class, EmpleadoTest.class, FranquiciaTest.class, InformeTest.class, NominaExceptionTest.class,
     NominaTest.class, TaquilleroTest.class, UsuarioTest.class
 
-})
+})*/
 public class TesTsuite1 {
 
     @BeforeClass
